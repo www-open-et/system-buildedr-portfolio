@@ -1,0 +1,65 @@
+{
+  "slug": "durable-ai-workflows",
+  "title": "Designing AI Workflows That Survive the Request",
+  "description": "How to design event-driven AI workflows with durable scheduling, safe retries, controlled side effects, and human review.",
+  "date": "2026-09-08",
+  "category": "Engineering note",
+  "readingMinutes": 5,
+  "sections": [
+    {
+      "heading": "Design for work that outlives the request",
+      "paragraphs": [
+        "Consider a workflow that receives an email, identifies a tenant and phone number, schedules an AI-assisted call, and eventually updates a CRM. The difficult part is not merely obtaining a model response. It is preserving intent while requests end, workers restart, and external services answer at different times. Durable workflow design makes that progress explicit and recoverable.",
+        "A useful starting point is to separate event acceptance from workflow execution. The inbound handler establishes whether an event is authentic and records enough information to process it later. A worker advances the workflow. A callback reports what an external service observed. These are different responsibilities and should not depend on one long-lived HTTP request."
+      ]
+    },
+    {
+      "heading": "Accept an event without losing the work",
+      "paragraphs": [
+        "Verify a webhook using the provider's documented scheme, including the raw request bytes when required, the correct signing secret, and the prescribed timestamp checks. Resolve the tenant from trusted integration configuration, not from an unverified field in the message. A valid signature authenticates the provider event; it does not make every embedded email instruction trustworthy.",
+        "Store the event identity and initial workflow state durably before returning success. If a separate queue is involved, avoid a gap where the database commit succeeds but enqueueing fails. A transactional outbox can record the pending dispatch in the same transaction; a dispatcher may deliver it more than once, so the consumer still needs deduplication. Repeated delivery of an already accepted event should not create a second workflow."
+      ],
+      "bullets": [
+        "Scope event uniqueness by tenant, provider, and provider event ID.",
+        "Keep raw personal data only where necessary, with restricted access and a retention policy.",
+        "Distinguish invalid requests from temporary persistence failures in webhook responses.",
+        "Record a correlation ID that follows the workflow without exposing message contents in logs."
+      ]
+    },
+    {
+      "heading": "Make scheduling a persisted decision",
+      "paragraphs": [
+        "An in-memory timer is not a durable schedule. Persist the next eligible execution time together with the workflow state, attempt count, and any reason the workflow is blocked. Store execution timestamps consistently, while retaining the timezone needed to interpret permitted contact windows. A scheduler should claim eligible work atomically so competing workers cannot independently launch the same attempt.",
+        "A lease helps recover work after a worker disappears, but lease expiry alone does not prove that the worker stopped. Use conditional state updates or fencing where supported, and protect external actions separately. Before placing a call, recheck cancellation, contact eligibility, consent requirements, and any human-review hold. These conditions may have changed since the email arrived."
+      ]
+    },
+    {
+      "heading": "Treat external side effects as an uncertainty boundary",
+      "paragraphs": [
+        "A call-creation request can time out after the provider has accepted it. Retrying immediately may create a duplicate call. Persist a stable operation identity before dispatch and use the provider's idempotency mechanism if one is available. Store the provider reference when it becomes known. If the provider offers neither idempotency nor a reliable lookup, an ambiguous attempt should enter reconciliation or manual review rather than be blindly repeated.",
+        "Model output needs a separate boundary. Extracted phone information should pass structural validation and any required review before becoming a calling instruction. A model must not choose arbitrary tenant credentials, destinations, or tools based on text inside an email. Keep those capabilities in application policy, and treat generated summaries as content rather than authoritative workflow state."
+      ]
+    },
+    {
+      "heading": "Represent progress explicitly",
+      "paragraphs": [
+        "States such as received, needs_review, scheduled, dispatching, awaiting_result, completed, and failed make the workflow inspectable. Define allowed transitions and the evidence needed for each one. A provider accepting a call request is not the same as a completed conversation, and a completed conversation is not the same as a successful CRM update.",
+        "Deduplicate provider callbacks and reject transitions that would incorrectly move a completed step backward. Retry transient failures with bounded backoff and jitter; route permanent validation failures to a visible resolution path. Track the CRM handoff separately so an integration outage does not require repeating the call."
+      ]
+    },
+    {
+      "heading": "Test the gaps between services",
+      "paragraphs": [
+        "The most useful tests interrupt the workflow at its boundaries. Exercise a restart after persistence but before queue delivery, a timeout after provider acceptance, and a callback arriving before the dispatch response is recorded. Inspect whether the system can explain what it knows, what remains uncertain, and what action is safe next.",
+        "Operational visibility should answer those same questions. Queue age, overdue schedules, ambiguous dispatches, and failed handoffs are more actionable than a generic success count. Design for recoverable progress and controlled side effects: local deduplication alone cannot guarantee exactly-once execution across independent services."
+      ],
+      "bullets": [
+        "Replay the same inbound event and callback without repeating the business action.",
+        "Expire a worker lease while its original request is still in flight.",
+        "Cancel scheduled work immediately before dispatch.",
+        "Simulate a CRM outage after a completed call and recover only the handoff.",
+        "Confirm that a reviewer can resolve ambiguity without editing database rows by hand."
+      ]
+    }
+  ]
+}

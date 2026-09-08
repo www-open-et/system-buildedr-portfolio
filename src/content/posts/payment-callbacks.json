@@ -1,0 +1,66 @@
+{
+  "slug": "payment-callbacks",
+  "title": "Payment Callbacks Are Evidence, Not the Whole Ledger",
+  "description": "A practical approach to authenticating payment events, handling duplicates, and reconciling provider records with application and accounting state.",
+  "date": "2026-09-08",
+  "category": "Engineering note",
+  "readingMinutes": 5,
+  "sections": [
+    {
+      "heading": "Separate the event from the payment state",
+      "paragraphs": [
+        "Payment systems connect several accounts of the same business event: an application order, a provider transaction, and an accounting record. A callback contributes evidence to that relationship, but it does not replace a transaction model or reconciliation process. A dependable integration gives each record a clear identity and defines how new evidence can change its state.",
+        "Keep initiation, authorization, collection, settlement, refund, and accounting synchronization distinct wherever the provider exposes those concepts. Not every channel uses the same lifecycle. An adapter should map documented provider semantics into explicit internal states, rather than interpreting any success-shaped response as money received."
+      ]
+    },
+    {
+      "heading": "Start with identity and authenticity",
+      "paragraphs": [
+        "Create an internal payment attempt associated with the order before contacting the provider. Preserve the merchant reference, provider account, environment, expected amount, and currency. Separate attempts from orders because a customer may retry using a different channel. A second successful attempt against an already paid order needs an exception path, not a second fulfillment.",
+        "Authenticate callbacks according to the provider's protocol. That may involve signature verification over raw bytes, a shared credential, or another documented mechanism. Where callback authenticity is insufficient, use an authenticated server-to-server status query before granting value. A browser redirect is useful for customer experience but is not authoritative payment confirmation."
+      ],
+      "bullets": [
+        "Match the transaction to the intended merchant account and environment.",
+        "Check amount and currency against the stored attempt, using integer minor units or an appropriate decimal representation rather than binary floating point.",
+        "Keep sandbox credentials and transaction identifiers separate from production.",
+        "Do not let an incoming callback choose arbitrary URLs for verification requests."
+      ]
+    },
+    {
+      "heading": "Persist before acknowledging",
+      "paragraphs": [
+        "Providers may retry when a response is lost, even if the first delivery was processed. Store the accepted event in a durable inbox with an appropriate uniqueness constraint before returning the provider's expected success acknowledgment. If persistence fails, return the documented retryable response rather than silently dropping the event. Signature verification and minimal validation belong before acceptance; slow downstream accounting work usually does not.",
+        "Event deduplication and business idempotency solve different problems. Two distinct provider events may both describe the same successful transaction. The consumer should apply a guarded payment transition and create a single fulfillment or accounting intent in one database transaction. An outbox can then deliver that intent independently, with idempotency again required at the receiving boundary."
+      ]
+    },
+    {
+      "heading": "Do not assume delivery order",
+      "paragraphs": [
+        "A pending event may arrive after a success event, and a refund event may arrive long after collection. Define a transition table using the provider's documented lifecycle. Do not implement last-write-wins based on callback arrival time, or assume that every later event is more authoritative. Provider timestamps can help investigation but are not a universal ordering guarantee.",
+        "Preserve the incoming evidence even when it cannot immediately change payment state. An unknown transaction, mismatched amount, or contradictory terminal status should produce an exception for investigation. When the provider supports status lookup, compare against its authoritative record and record the basis for the resolution. Keep the original event history rather than rewriting it to make the records appear consistent."
+      ]
+    },
+    {
+      "heading": "Make accounting synchronization recoverable",
+      "paragraphs": [
+        "A payment may be confirmed while an Odoo or other accounting update is unavailable. Represent those facts separately: payment confirmed, accounting synchronization pending. Retrying the accounting action should not reopen the payment request or issue another collection. Use a stable external reference and a uniqueness mechanism in the accounting integration where possible.",
+        "There is another ambiguity if an accounting request succeeds but its response is lost. Query by the stable reference or use a supported idempotency facility before creating another record. A local processed flag alone cannot prevent duplicates across that network boundary. When no reliable check exists, surface the ambiguous operation for reconciliation."
+      ]
+    },
+    {
+      "heading": "Reconcile beyond the callback stream",
+      "paragraphs": [
+        "Reconciliation compares application attempts, provider transactions or settlement reports, and accounting entries over an explicit period. Use overlapping query windows where appropriate to catch delayed records, and keep the comparison repeatable. Distinguish missing callbacks from unmatched payments, fees, refunds, and settlement timing differences. Payment confirmation and bank settlement should not be collapsed into one status.",
+        "Build an exception queue with enough context for a reviewer to identify the mismatch without putting sensitive payloads in general logs. A resolution should retain who acted, what evidence was checked, and which business record changed. Callback processing captures events; reconciliation checks whether the provider, application, and accounting records agree."
+      ],
+      "bullets": [
+        "Deliver duplicate and out-of-order callbacks concurrently.",
+        "Test an authentic event with the wrong amount, currency, or merchant account.",
+        "Lose the acknowledgment after a successful database commit.",
+        "Simulate two successful payment attempts for one order.",
+        "Recover an accounting timeout without creating a duplicate entry.",
+        "Find a provider-confirmed transaction that never produced a callback."
+      ]
+    }
+  ]
+}

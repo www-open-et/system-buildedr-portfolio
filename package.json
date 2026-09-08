@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
+    "build": "vite build --manifest --assetsInlineLimit 0 && node scripts/prerender.mjs",
+    "build:dev": "vite build --mode development --manifest --assetsInlineLimit 0 && node scripts/prerender.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json",
+    "test": "node --test scripts/prerender.test.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

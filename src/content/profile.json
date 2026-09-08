@@ -1,0 +1,175 @@
+{
+  "name": "Fkadeal Matiwos",
+  "shortName": "FKADL",
+  "role": "Senior Software Engineer | AI Automation, Payments, Cloud & Full Stack",
+  "location": "Addis Ababa, Ethiopia",
+  "email": "fkadeal@open.et",
+  "url": "https://fkadeal.open.et",
+  "summary": "I help teams build and operate software that connects products, payments, and business workflows. With roughly ten years of industry experience, I work across AI automation, payment integrations, multi-tenant platforms, and cloud infrastructure. My approach combines hands-on full-stack development with attention to reliable integrations, recoverable workflows, and maintainable delivery. Based in Addis Ababa, I bring senior engineering judgment to the entire path from product requirements to running services.",
+  "github": "https://github.com/fkadeal",
+  "linkedin": "https://linkedin.com/in/fkadeal",
+  "expertise": [
+    {
+      "id": "ai",
+      "title": "AI Automation & Durable Workflows",
+      "description": "Connect AI capabilities to real business processes without treating a model response as the whole system. My focus is the surrounding workflow: trusted event intake, scheduled work, provider integrations, explicit state, and a clear handoff when automation needs human judgment.",
+      "skills": ["AI workflow orchestration", "Durable scheduling", "Signed webhooks", "ElevenLabs", "Twilio", "Resend", "CRM integrations"]
+    },
+    {
+      "id": "payments",
+      "title": "Payments & Business Integrations",
+      "description": "Build the connection between a payment request and the business record that must eventually agree with it. I work across local payment channels, callback processing, and accounting integrations, with particular attention to transaction identity, failure handling, and reconciliation.",
+      "skills": ["Telebirr", "Bank integrations", "USSD payment flows", "Payment callbacks", "Odoo", "Reconciliation", "FastAPI"]
+    },
+    {
+      "id": "saas",
+      "title": "Full-Stack SaaS & Marketplaces",
+      "description": "Carry product behavior across the interface, API, and data model. For multi-tenant products, that means treating ownership and authorization as architectural decisions, not UI filters, while keeping the experience coherent for the people using the software.",
+      "skills": ["Next.js", "React", "NestJS", "Node.js", "TypeScript", "Python", "Hono", "Supabase", "PostgreSQL", "Multi-tenant architecture", "API design", "Marketplace workflows", "Content management"]
+    },
+    {
+      "id": "cloud",
+      "title": "Cloud Delivery & Service Operations",
+      "description": "Build deployment environments that teams can maintain with confidence. I work across AWS, edge services, and Linux VPS infrastructure, using infrastructure as code, configuration management, container orchestration, and CI/CD to connect application development with repeatable delivery and service operations.",
+      "skills": ["AWS", "Terraform", "Ansible", "Kubernetes", "CI/CD", "Cloudflare Workers", "Docker", "Linux VPS", "Linux hardening", "Nginx", "Envoy", "systemd"]
+    }
+  ],
+  "projects": [
+    {
+      "slug": "lawgical-intake-automation",
+      "title": "Email-to-Call Intake Automation",
+      "company": "Lawgical",
+      "category": "AI Automation",
+      "summary": "An intake workflow connecting inbound email to firm-specific routing, scheduled AI calling, and CasePeer. The engineering work sits between the message arriving and the resulting interaction becoming useful to the receiving team.",
+      "challenge": "Email intake, phone contact, scheduling, and case management have different data shapes and execution timelines. Joining them requires more than a synchronous chain of API calls: the workflow must preserve routing context and retain scheduled work beyond the lifetime of the inbound request.",
+      "approach": [
+        "Receive email events through Resend and use a signed webhook as the intake boundary.",
+        "Route the intake to the appropriate firm and extract phone information for the next stage of processing.",
+        "Use durable scheduled work to coordinate AI calling through ElevenLabs and Twilio rather than relying on an in-process timer.",
+        "Connect the calling workflow to CasePeer so intake information and follow-up can reach the case-management workflow."
+      ],
+      "outcome": "A connected intake workflow that carries firm-specific context from inbound email through scheduled AI calling to CasePeer, bringing intake processing and case-management follow-up into the same integration path.",
+      "stack": ["Next.js", "NestJS", "TypeScript", "Supabase", "PostgreSQL", "Resend", "Signed webhooks", "Durable scheduling", "ElevenLabs", "Twilio", "CasePeer"],
+      "flow": ["Inbound email via Resend", "Signed webhook verification", "Firm routing and phone extraction", "Durable scheduled call", "ElevenLabs and Twilio", "CasePeer handoff"]
+    },
+    {
+      "slug": "lawgical-signals",
+      "title": "Signals: Prospect Context & Introductions",
+      "company": "Lawgical",
+      "category": "Workflow Automation",
+      "summary": "Prospect enrichment and relationship discovery organized around an ideal customer profile. Signals brings prospect context, relationship graphs, introduction links, and queues into a connected workflow.",
+      "challenge": "A prospect record alone does not explain why an organization is relevant or how a useful introduction might happen. The product problem is to connect enrichment with relationship context while keeping the next action visible to the person reviewing the prospect.",
+      "approach": [
+        "Organize prospect enrichment around the ideal customer profile, using PhantomBuster as part of the enrichment workflow.",
+        "Represent relationship context as a graph that can support exploration of potential introduction paths.",
+        "Connect introduction links and queues so discovery can lead into an actionable review workflow."
+      ],
+      "outcome": "A prospecting workflow that pairs ICP-based enrichment with relationship context, introduction links, and action queues, giving reviewers a connected view of prospect relevance and potential paths to an introduction.",
+      "stack": ["Next.js", "NestJS", "TypeScript", "Supabase", "PostgreSQL", "PhantomBuster", "Relationship graphs", "Work queues"],
+      "flow": ["Ideal customer profile", "Prospect enrichment", "Relationship graph", "Introduction links", "Review and action queues"]
+    },
+    {
+      "slug": "birrlink-payments",
+      "title": "Payment Channels & Reconciliation",
+      "company": "BirrLink",
+      "category": "Payments",
+      "summary": "Payment integration work across Telebirr, banks, and USSD flows, with callbacks and Odoo reconciliation connecting payment activity to business records.",
+      "challenge": "Payment initiation and payment confirmation are separate events. Provider callbacks, application records, and accounting entries need a coherent integration path, while the services handling those events need a maintainable deployment environment.",
+      "approach": [
+        "Connect Telebirr, bank, and USSD payment flows through FastAPI-based integration services.",
+        "Handle payment callbacks as part of the transaction lifecycle rather than relying on a customer's browser returning to the application.",
+        "Integrate Odoo reconciliation into the broader payment workflow so payment information can be compared with business records.",
+        "Work with Nginx, Envoy, and systemd for request routing and service operation."
+      ],
+      "outcome": "An integration path connecting Telebirr, bank, and USSD payment activity with callback processing and Odoo reconciliation, supported by FastAPI services and Linux service infrastructure.",
+      "stack": ["Telebirr", "Bank integrations", "USSD", "Odoo", "FastAPI", "Nginx", "Envoy", "systemd"],
+      "flow": ["Payment request", "Telebirr, bank, or USSD channel", "Provider callback", "Payment status processing", "Odoo reconciliation"]
+    },
+    {
+      "slug": "yayehut-marketplace",
+      "title": "Multi-Tenant Marketplace",
+      "company": "Yayehut",
+      "category": "Full-Stack SaaS",
+      "summary": "A multi-tenant marketplace spanning a Next.js interface, Hono APIs, Supabase, and a deployment footprint that includes Cloudflare Workers and Docker on a VPS.",
+      "challenge": "A shared marketplace must serve multiple tenants without confusing who owns data or who is allowed to act on it. The full-stack challenge also includes keeping product behavior consistent across the interface, API, persistence, and deployment boundaries.",
+      "approach": [
+        "Use Next.js for the product interface and Hono for API concerns within the marketplace architecture.",
+        "Work with Supabase as part of the data layer, treating tenant ownership as a central design concern.",
+        "Use Cloudflare Workers alongside Docker and VPS infrastructure across the deployment footprint."
+      ],
+      "outcome": "A multi-tenant marketplace bringing together the product interface, API, and Supabase data layer, with application delivery spanning Cloudflare Workers and Docker on VPS infrastructure.",
+      "stack": ["Next.js", "Hono", "Supabase", "Cloudflare Workers", "Docker", "VPS"],
+      "flow": ["Marketplace interface", "Tenant-aware API requests", "Data access through Supabase", "Response to the appropriate tenant context"]
+    },
+    {
+      "slug": "oda-award-voting",
+      "title": "Award Voting & Content Management",
+      "company": "ODA",
+      "category": "Web Application",
+      "summary": "An award-voting application with content-management functionality.",
+      "challenge": "Bring award voting and the content supporting it into a web application.",
+      "approach": ["Work on the award-voting experience and its accompanying content-management functionality."],
+      "outcome": "A web application combining the award-voting experience with content management for the supporting award content.",
+      "stack": ["Award voting", "CMS"],
+      "flow": ["Award content", "Voting experience", "Content management"]
+    }
+  ],
+  "experience": [
+    {
+      "company": "Lawgical",
+      "role": "Software Engineering - AI Automation & Integrations",
+      "period": "Recent work",
+      "description": "Full-stack engineering with Next.js, NestJS, TypeScript, Supabase, and PostgreSQL across AI automation and prospecting workflows. Work includes Resend-driven intake, durable scheduled calling with ElevenLabs and Twilio, CasePeer integration, and Signals enrichment with PhantomBuster, relationship graphs, and introduction queues."
+    },
+    {
+      "company": "BirrLink",
+      "role": "Software Engineering - Payments & Integrations",
+      "period": "2024 - present",
+      "description": "Payment integration work involving Telebirr, banks, USSD, callbacks, and Odoo reconciliation. The scope includes FastAPI services and the Nginx, Envoy, and systemd environment supporting their operation."
+    },
+    {
+      "company": "FARIS",
+      "role": "Software Engineering",
+      "period": "2023 - present",
+      "description": "Full-stack development with Node.js, React, and Python, including work on GetChereta and Telebirr integration. The work spans application interfaces, backend services, and payment connectivity."
+    },
+    {
+      "company": "ETM",
+      "role": "Software Engineering",
+      "period": "2021 - 2023",
+      "description": "Developed backend APIs, database models, and responsive client applications, with OAuth integration for authentication and authorization flows. Worked across service contracts, persistence, and client behavior to connect the application's backend and user experience."
+    },
+    {
+      "company": "Independent Consulting",
+      "role": "Software Engineering Consultant",
+      "period": "Selected engagements",
+      "description": "Engineering consulting across custom Odoo modules, Linux hardening, and application deployments. Connect business-specific software changes with the server configuration and delivery work needed to run and maintain them."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What kind of engineering work do you focus on?",
+      "answer": "I focus on AI automation, payments, full-stack SaaS, and cloud delivery. I am particularly interested in systems where several services must cooperate reliably, such as turning inbound events into scheduled work or connecting a payment channel to an accounting workflow."
+    },
+    {
+      "question": "How much industry experience do you bring?",
+      "answer": "I bring roughly ten years of industry experience across backend systems, full-stack applications, integrations, and infrastructure. That breadth helps me evaluate tradeoffs across the whole product rather than treating the interface, services, and deployment as separate problems."
+    },
+    {
+      "question": "How do you approach AI features?",
+      "answer": "I treat the model or voice provider as one component of a larger system. The surrounding workflow needs clear inputs, durable state, controlled side effects, and a way for people to review uncertain or sensitive decisions. A convincing demo is a starting point, not the reliability model."
+    },
+    {
+      "question": "Do you work across frontend, backend, and infrastructure?",
+      "answer": "Yes. My work spans product interfaces, APIs, integrations, and deployment. I prefer to follow the problem across those boundaries while keeping the implementation understandable for the team that will operate and extend it."
+    },
+    {
+      "question": "Where are you based, and how can I contact you?",
+      "answer": "I am based in Addis Ababa, Ethiopia. Email fkadeal@open.et with the problem you are trying to solve, the current system, and the kind of engineering support you need. Please keep credentials and sensitive customer data out of the initial message."
+    },
+    {
+      "question": "How can we discuss a role or consulting engagement?",
+      "answer": "Email fkadeal@open.et with a short overview of your product, the engineering challenge, and whether you are hiring for a team role or seeking consulting support. Include the current stack, expected scope, and timeline so we can discuss fit and the most useful next step."
+    }
+  ]
+}

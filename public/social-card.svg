@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Fkadeal Matiwos - Senior Software Engineer</title>
+  <desc id="desc">AI automation, payments, cloud and full-stack engineering. Addis Ababa, Ethiopia.</desc>
+  <rect width="1200" height="630" fill="#f4f1e8"/>
+  <path d="M860 0h340v630H860z" fill="#191c18"/>
+  <g fill="none" stroke="#d4f77d" stroke-width="2">
+    <circle cx="1030" cy="315" r="220"/><circle cx="1030" cy="315" r="150"/>
+    <path d="M860 315h340M1030 0v630"/>
+  </g>
+  <rect x="72" y="68" width="102" height="42" rx="21" fill="#d4f77d"/>
+  <g fill="#191c18" font-family="Arial, Helvetica, sans-serif">
+    <text x="94" y="96" font-size="20" font-weight="700">FKADL</text>
+    <text x="72" y="259" font-size="70" font-weight="700">Fkadeal</text>
+    <text x="72" y="338" font-size="70" font-weight="700">Matiwos.</text>
+    <text x="76" y="402" font-size="29">Senior Software Engineer</text>
+    <text x="76" y="453" font-size="21">AI AUTOMATION / PAYMENTS / CLOUD / FULL STACK</text>
+    <text x="76" y="561" font-size="21">fkadeal.open.et</text>
+    <text x="541" y="561" font-size="18">Addis Ababa, Ethiopia</text>
+  </g>
+  <circle cx="1030" cy="315" r="24" fill="#d4f77d"/>
+</svg>

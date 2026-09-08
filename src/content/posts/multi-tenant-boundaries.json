@@ -1,0 +1,65 @@
+{
+  "slug": "multi-tenant-boundaries",
+  "title": "Multi-Tenant Boundaries Must Follow the Data",
+  "description": "How to carry tenant authorization through APIs, database policies, caches, background jobs, and file access, with tests for cross-tenant isolation.",
+  "date": "2026-09-08",
+  "category": "Engineering note",
+  "readingMinutes": 5,
+  "sections": [
+    {
+      "heading": "Treat isolation as a system property",
+      "paragraphs": [
+        "In a multi-tenant application, a tenant selector is a navigation feature. Isolation is the separate obligation to ensure that every read, write, export, job, and stored object respects ownership and permissions. Effective boundaries follow the data through the entire system, including paths that never appear in the user interface.",
+        "A shared database can be a reasonable starting point, but a tenant_id column is not sufficient by itself. The boundary must remain intact when data moves from a Next.js interface through a Hono API into a database, or when a scheduled job runs without a browser session. First define which resources belong to a tenant, which are intentionally public, and which are truly global."
+      ]
+    },
+    {
+      "heading": "Resolve context from authenticated membership",
+      "paragraphs": [
+        "A route parameter, subdomain, or request header can identify the tenant the user wants to access. It cannot prove membership. Authenticate the caller, resolve the requested tenant, and verify the required membership and role before constructing the request's authorization context. An authenticated user may belong to several tenants with different permissions in each.",
+        "Keep the tenant context explicit through the service layer, and fail closed when it is missing. For privileged actions, consider whether a cached membership or long-lived token could outlast revocation. Background work also needs a documented rule: should it recheck the initiating user's current permission, or run under a narrowly scoped service authority established when the task was accepted?"
+      ],
+      "bullets": [
+        "Do not infer authorization from a client-supplied tenant identifier.",
+        "Check action-level permissions, not only tenant membership.",
+        "Keep support or administrative cross-tenant access explicit and auditable.",
+        "Avoid request-specific tenant state in shared mutable globals, including edge isolates."
+      ]
+    },
+    {
+      "heading": "Enforce ownership where data is stored",
+      "paragraphs": [
+        "Scope reads and writes by tenant and resource identity together. An update that checks membership first but later modifies a row only by its public ID can still cross a boundary. Database constraints should also prevent invalid relationships, such as attaching one tenant's order item to another tenant's order. Composite keys or equivalent constraints can encode this ownership relationship instead of relying entirely on application convention.",
+        "With Supabase, row-level security can provide a second enforcement layer when policies correctly reflect identity and membership. Review both which existing rows may be targeted and which resulting rows may be inserted or updated. Privileged service credentials can bypass policies; keep them server-side and give code using them an explicit authorization path. Merely enabling row-level security does not establish that every policy is correct."
+      ]
+    },
+    {
+      "heading": "Caches and files are part of the boundary",
+      "paragraphs": [
+        "A database query may be perfectly scoped while its cached response is not. Include the dimensions that determine visibility in cache keys, such as tenant, resource, and relevant permission context. Personalized or sensitive responses may be better left out of shared caches altogether. Review framework rendering caches and CDN behavior as well as application caches; a correct API cannot compensate for an incorrectly shared page response.",
+        "Object storage requires its own controls. A tenant-prefixed key is an organizational convention, not authorization. Check access before issuing a signed URL, keep its lifetime appropriate, and remember that an already issued URL may remain usable after membership is revoked. Exports, generated reports, search indexes, and download metadata deserve the same review as primary database tables."
+      ]
+    },
+    {
+      "heading": "Carry authority into asynchronous work",
+      "paragraphs": [
+        "A queue message should preserve the tenant and resource identity necessary to load the correct data, but workers should not treat arbitrary queue payloads as proof of permission. Restrict producers, validate the job, and load the authoritative operation record before executing. Scope idempotency keys by tenant so identical external identifiers cannot cause one tenant's work to suppress another's.",
+        "Apply the same reasoning to webhooks. Map a provider account or endpoint configuration to a trusted tenant context after verification, then check that referenced resources belong to that tenant. For deployments spanning Cloudflare Workers and VPS services, avoid turning internal network placement into an implicit grant of cross-tenant access. Each service boundary needs an authenticated, constrained contract."
+      ]
+    },
+    {
+      "heading": "Test with adversarial tenant pairs",
+      "paragraphs": [
+        "Create two tenants with similar resource names and users holding different roles. Try to substitute the second tenant's identifiers in reads, updates, deletes, nested routes, bulk operations, and exports. Assert both the response and the absence of unauthorized side effects. A denied response is not enough if a write happened before the authorization failure.",
+        "Run policy tests with ordinary user credentials as well as integration tests through privileged backend paths. Exercise a warmed cache, a delayed background job after membership revocation, and a file link created under another tenant. The aim is a repeatable argument for isolation across the full data path, not confidence based only on a filtered dashboard."
+      ],
+      "bullets": [
+        "Attempt cross-tenant parent-child relationships and bulk writes.",
+        "Read the same route under two tenants after warming every cache layer.",
+        "Verify that lower-privilege members cannot reuse an administrator's cached response.",
+        "Revoke membership before a queued operation runs and verify the intended policy.",
+        "Inspect exports, storage policies, search results, and logs for unintended exposure."
+      ]
+    }
+  ]
+}
