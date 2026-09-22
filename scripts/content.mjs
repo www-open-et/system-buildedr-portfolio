@@ -221,17 +221,17 @@ export async function loadContent() {
       path: "/",
       label: "Home",
       title: `${profile.name} | ${profile.role}`,
-      description: `${profile.name}, senior software engineer in ${profile.location}. AI automation, payment integrations, full-stack SaaS, and cloud delivery.`,
+      description: `${profile.name}, senior software engineer and consultant in ${profile.location}. AI automation, payments, business applications, and cloud infrastructure.`,
     },
     {
       path: "/about/",
       label: "About",
-      description: `About ${profile.name}: roughly ten years of software engineering experience, connecting product interfaces, business operations, and infrastructure.`,
+      description: `About ${profile.name}: roughly ten years across company engineering and consultancy, including Lawgical, BirrLink, FARIS, ETM, and ODA Award.`,
     },
     {
       path: "/work/",
       label: "Selected Work",
-      description: `Selected engineering work by ${profile.name}: AI intake automation, prospect workflows, payment integrations, a multi-tenant marketplace, and award voting.`,
+      description: `${profile.projects.length} selected projects by ${profile.name}: AI, payments, academic and document systems, UNHCR workflows through ETM, ODA Award, and infrastructure.`,
     },
     ...profile.projects.map((project) => ({
       path: `/work/${project.slug}/`,
@@ -242,7 +242,7 @@ export async function loadContent() {
     {
       path: "/expertise/",
       label: "Engineering Expertise",
-      description: `${profile.name}'s engineering focus: AI automation and durable workflows, payments and business integrations, full-stack SaaS, and cloud service operations.`,
+      description: `${profile.name}'s expertise: AI and document automation, payments, SaaS and academic systems, and infrastructure. Explore related project evidence in each area.`,
     },
     {
       path: "/writing/",
@@ -258,12 +258,12 @@ export async function loadContent() {
     {
       path: "/contact/",
       label: "Contact",
-      description: `Contact ${profile.name} in ${profile.location} about AI automation, payments, SaaS, and cloud engineering. Share the problem and the support you need.`,
+      description: `Contact ${profile.name} in ${profile.location} for senior engineering or consultancy in AI, documents, payments, academic systems, and infrastructure.`,
     },
     {
       path: "/resume/",
       label: "Resume",
-      description: `${profile.name}'s professional overview: senior software engineering across AI automation, payments, full-stack platforms, and infrastructure. Selected experience and skills.`,
+      description: `${profile.name}'s printable engineering profile: experience, skills, and ${profile.projects.length} projects with company and consultancy attribution.`,
     },
     {
       path: "/404.html",

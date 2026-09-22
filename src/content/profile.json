@@ -5,15 +5,15 @@
   "location": "Addis Ababa, Ethiopia",
   "email": "fkadeal@open.et",
   "url": "https://fkadeal.open.et",
-  "summary": "I help teams build and operate software that connects products, payments, and business workflows. With roughly ten years of industry experience, I work across AI automation, payment integrations, multi-tenant platforms, and cloud infrastructure. My approach combines hands-on full-stack development with attention to reliable integrations, recoverable workflows, and maintainable delivery. Based in Addis Ababa, I bring senior engineering judgment to the entire path from product requirements to running services.",
+  "summary": "Senior software engineer and consultant based in Addis Ababa, Ethiopia, with roughly ten years of industry experience. I build and operate software across AI automation, payment systems, academic operations, document workflows, and cloud infrastructure. My work spans company engineering roles and independent consultancy, from integrating business services to delivering full applications and the infrastructure that supports them. I focus on reliable integrations, recoverable workflows, and maintainable delivery.",
   "github": "https://github.com/fkadeal",
   "linkedin": "https://linkedin.com/in/fkadeal",
   "expertise": [
     {
       "id": "ai",
       "title": "AI Automation & Durable Workflows",
-      "description": "Connect AI capabilities to real business processes without treating a model response as the whole system. My focus is the surrounding workflow: trusted event intake, scheduled work, provider integrations, explicit state, and a clear handoff when automation needs human judgment.",
-      "skills": ["AI workflow orchestration", "Durable scheduling", "Signed webhooks", "ElevenLabs", "Twilio", "Resend", "CRM integrations"]
+      "description": "Connect AI capabilities to business processes through trusted event intake, scheduled work, provider integrations, and explicit state. My experience includes Lawgical intake and Signals workflows, plus consultancy in document processing, management interfaces, and AI-assisted drafting.",
+      "skills": ["AI workflow orchestration", "Durable scheduling", "Signed webhooks", "ElevenLabs", "Twilio", "Resend", "CRM integrations", "Python", "Flask", "LangChain", "ChromaDB", "Document processing"]
     },
     {
       "id": "payments",
@@ -24,13 +24,13 @@
     {
       "id": "saas",
       "title": "Full-Stack SaaS & Marketplaces",
-      "description": "Carry product behavior across the interface, API, and data model. For multi-tenant products, that means treating ownership and authorization as architectural decisions, not UI filters, while keeping the experience coherent for the people using the software.",
-      "skills": ["Next.js", "React", "NestJS", "Node.js", "TypeScript", "Python", "Hono", "Supabase", "PostgreSQL", "Multi-tenant architecture", "API design", "Marketplace workflows", "Content management"]
+      "description": "Carry product behavior across the interface, API, and data model. Work includes Yayehut's marketplace, student-information and academic-operations consultancy, ODA Award development, and UNHCR reporting and case workflows through ETM. I connect usable interfaces with the validation, authorization, and data workflows behind them.",
+      "skills": ["Next.js", "React", "Nuxt", "Vue", "PHP", "Laravel", "NestJS", "Node.js", "TypeScript", "Hono", "Supabase", "PostgreSQL", "Multi-tenant architecture", "API design", "Academic workflows", "Operational reporting", "Content management"]
     },
     {
       "id": "cloud",
       "title": "Cloud Delivery & Service Operations",
-      "description": "Build deployment environments that teams can maintain with confidence. I work across AWS, edge services, and Linux VPS infrastructure, using infrastructure as code, configuration management, container orchestration, and CI/CD to connect application development with repeatable delivery and service operations.",
+      "description": "Connect application development with repeatable deployment and service operations. My infrastructure work includes EduFaris API and Faris Chat / AI Services through FARIS, Hibo Megazen consultancy, and full development and infrastructure for ODA Award. I work across cloud and Linux environments with containers, configuration management, infrastructure as code, and CI/CD.",
       "skills": ["AWS", "Terraform", "Ansible", "Kubernetes", "CI/CD", "Cloudflare Workers", "Docker", "Linux VPS", "Linux hardening", "Nginx", "Envoy", "systemd"]
     }
   ],
@@ -102,16 +102,116 @@
       "flow": ["Marketplace interface", "Tenant-aware API requests", "Data access through Supabase", "Response to the appropriate tenant context"]
     },
     {
+      "slug": "student-information-academic-operations",
+      "title": "Student Information & Academic Operations",
+      "company": "Independent Consultancy",
+      "category": "Academic Systems",
+      "summary": "Consultancy work on a student-information platform spanning course registration, assessment and grade workflows, graduation processes, and academic administration. Contributions connect a Nuxt/Vue interface with Laravel APIs and supporting development tooling.",
+      "challenge": "Academic workflows depend on consistent rules across registration, course setup, grades, and graduation. Changes must carry those rules through both the administrative interface and the API, including validation and filtering for complex student records.",
+      "approach": [
+        "Develop course-registration and academic-administration workflows across Nuxt/Vue interfaces and Laravel services.",
+        "Implement and refine validation for course setup, grade-related inputs, and graduation forms.",
+        "Normalize API filters and malformed request inputs, with focused middleware tests.",
+        "Support exports, activity logging, and local/containerized development workflows."
+      ],
+      "outcome": "Contributions across the academic lifecycle, from student-course registration to grade and graduation administration, with supporting API validation and development tooling. The work reflects ongoing application maintenance as well as feature delivery.",
+      "stack": ["Nuxt", "Vue", "PHP", "Laravel", "Laravel Horizon", "Redis", "Docker", "GitHub Actions"],
+      "flow": ["Student and course records", "Registration and validation", "Assessment and grade workflows", "Graduation administration", "Administrative exports"]
+    },
+    {
+      "slug": "document-processing-management-ai-drafting",
+      "title": "Document Processing, Management & AI-Assisted Drafting",
+      "company": "Independent Consultancy",
+      "category": "Document & AI Workflows",
+      "summary": "Consultancy contributions across document processing, management interfaces, and AI-assisted drafting. This combined case study brings together Python document-processing workflows and Next.js/React work on permissions, sharing, and upload experiences.",
+      "challenge": "Useful document software needs more than extraction or generation alone. The engineering work spans parsing source material, making it useful for drafting, and building interfaces through which people can upload, organize, share, and review documents.",
+      "approach": [
+        "Build Python document-processing workflows with Flask, PDF/document parsing tools, LangChain, and ChromaDB dependencies.",
+        "Implement model-selection, summary-handling, evaluation-criteria extraction, and proposal-drafting behavior.",
+        "Develop Next.js/React management interfaces for user-permission assignment, permission-aware navigation, and document-sharing state.",
+        "Refine upload experiences, search, API integration, and application state across the document-management work."
+      ],
+      "outcome": "Consultancy work spanning related implementations across the document lifecycle: processing source material, supporting AI-assisted drafting, and developing the interfaces for document management, review, and sharing.",
+      "stack": ["Python", "Flask", "LangChain", "ChromaDB", "PDF parsing", "Next.js", "React", "TypeScript", "Redux Toolkit"],
+      "flow": ["Document upload and management", "Parsing and content extraction", "Summaries and evaluation criteria", "AI-assisted draft preparation", "Document review and sharing"]
+    },
+    {
+      "slug": "unhcr-operational-reporting-case-workflows",
+      "title": "UNHCR Operational Reporting & Case Workflows",
+      "company": "ETM",
+      "category": "Operational Reporting",
+      "summary": "Software-engineering work through ETM on UNHCR operational reporting and case workflows. Contributions span data imports, reporting and printing, activity logs, case-status changes, and internal workflow interfaces.",
+      "challenge": "Reporting and case-management applications need to make operational records useful to different users. That requires dependable import and query behavior, understandable status and transfer workflows, and interfaces that support reporting and follow-up.",
+      "approach": [
+        "Implement and refine data imports, report queries, dynamic reporting behavior, and print/export functionality.",
+        "Contribute activity logging, filtering, standard-comment interfaces, and case-status and transfer behavior.",
+        "Work across Laravel APIs and Nuxt/Vue interfaces, connecting backend records with operational workflows.",
+        "Support internal ticket communication and related application maintenance."
+      ],
+      "outcome": "Contributions connect operational data with reporting, case follow-up, and administrative workflows. This work was undertaken through ETM; the public case study describes engineering scope without including case records or operational data.",
+      "stack": ["PHP", "Laravel", "Nuxt", "Vue", "Laravel Horizon", "Redis", "Chart.js", "Excel import/export", "PDF generation"],
+      "flow": ["Operational records and imports", "Case status and transfer workflows", "Activity logs and follow-up", "Report queries and visualization", "Print and export"]
+    },
+    {
       "slug": "oda-award-voting",
-      "title": "Award Voting & Content Management",
-      "company": "ODA",
-      "category": "Web Application",
-      "summary": "An award-voting application with content-management functionality.",
-      "challenge": "Bring award voting and the content supporting it into a web application.",
-      "approach": ["Work on the award-voting experience and its accompanying content-management functionality."],
-      "outcome": "A web application combining the award-voting experience with content management for the supporting award content.",
-      "stack": ["Award voting", "CMS"],
-      "flow": ["Award content", "Voting experience", "Content management"]
+      "title": "ODA Award",
+      "company": "Independent Consultancy",
+      "category": "Full Development & Infrastructure",
+      "summary": "Full development and infrastructure consultancy for the ODA Award voting platform, bringing together the voting experience, content management, and application deployment. The platform handled 110,000 users on voting day.",
+      "challenge": "Deliver an award-voting application and the infrastructure to operate it during a concentrated voting-day audience, connecting public award content, the voting experience, and administration.",
+      "approach": [
+        "Take responsibility for full application development across the award-voting experience and supporting content-management functionality.",
+        "Build the public frontend with Next.js and React, including internationalization and interactive presentation.",
+        "Handle the infrastructure and deployment supporting the application and its voting-day operation."
+      ],
+      "outcome": "Delivered the award-voting platform and its supporting infrastructure as a consultancy engagement. The platform handled 110,000 users on voting day.",
+      "stack": ["Next.js", "React", "next-intl", "Framer Motion", "CMS", "Application deployment"],
+      "flow": ["Award content and administration", "Public voting experience", "Application deployment", "Voting-day operation"]
+    },
+    {
+      "slug": "edufaris-api-infrastructure",
+      "title": "EduFaris API",
+      "company": "FARIS",
+      "category": "Infrastructure Engineering",
+      "summary": "Infrastructure contributions at FARIS for the EduFaris API, supporting the delivery and operation of a Laravel-based education service. My role focused on the infrastructure supporting the application.",
+      "challenge": "Support an education API with an application environment and deployment process that connects the codebase to running services.",
+      "approach": [
+        "Contribute to infrastructure configuration and deployment work for the EduFaris API at FARIS.",
+        "Work with the project's Docker Compose setup and GitHub Actions delivery tooling in the context of its Laravel application."
+      ],
+      "outcome": "Infrastructure contributions supporting delivery and operation of the EduFaris API within FARIS's education-platform work.",
+      "stack": ["Laravel", "PHP", "Docker Compose", "GitHub Actions"],
+      "flow": ["Education API codebase", "Application environment", "Deployment workflow", "Service operation"]
+    },
+    {
+      "slug": "hibo-megazen-infrastructure",
+      "title": "Hibo Megazen",
+      "company": "Independent Consultancy",
+      "category": "Infrastructure Engineering",
+      "summary": "Infrastructure consultancy for Hibo Megazen, supporting application deployment and the environment around its Laravel-based software. The engagement focused on infrastructure and delivery.",
+      "challenge": "Connect the application's requirements with the infrastructure and deployment configuration needed to run it.",
+      "approach": [
+        "Provide infrastructure consultancy for the Hibo Megazen application.",
+        "Work on application delivery in a codebase using Laravel, Docker, Docker Compose, and GitHub Actions."
+      ],
+      "outcome": "Infrastructure and deployment contributions for Hibo Megazen as an independent consultancy engagement.",
+      "stack": ["Laravel", "PHP", "Docker", "Docker Compose", "GitHub Actions"],
+      "flow": ["Application requirements", "Runtime configuration", "Containerized deployment", "Application operation"]
+    },
+    {
+      "slug": "faris-chat-ai-infrastructure",
+      "title": "Faris Chat / AI Services",
+      "company": "FARIS",
+      "category": "Infrastructure Engineering",
+      "summary": "Infrastructure contributions at FARIS for chat and AI services built around a Python/FastAPI application. The project includes LangChain and Redis dependencies, with Docker-based deployment and GitHub Actions tooling.",
+      "challenge": "Provide infrastructure support for a chat and AI service with application dependencies and a repeatable path from code to a running environment.",
+      "approach": [
+        "Contribute to infrastructure and deployment work for Faris Chat / AI Services.",
+        "Work within the project's Docker and Docker Compose environment and GitHub Actions delivery tooling for its Python/FastAPI services."
+      ],
+      "outcome": "Infrastructure contributions supporting FARIS's chat and AI services, connecting application delivery with the environment in which the services run.",
+      "stack": ["Python", "FastAPI", "LangChain", "Redis", "Docker", "Docker Compose", "GitHub Actions"],
+      "flow": ["Chat and AI service codebase", "Application dependencies", "Containerized deployment", "Service operation"]
     }
   ],
   "experience": [
@@ -131,19 +231,19 @@
       "company": "FARIS",
       "role": "Software Engineering",
       "period": "2023 - present",
-      "description": "Full-stack development with Node.js, React, and Python, including work on GetChereta and Telebirr integration. The work spans application interfaces, backend services, and payment connectivity."
+      "description": "Full-stack development with Node.js, React, and Python, including work on GetChereta and Telebirr integration. Infrastructure contributions include EduFaris API and Faris Chat / AI Services, supporting application deployment and service environments."
     },
     {
       "company": "ETM",
       "role": "Software Engineering",
       "period": "2021 - 2023",
-      "description": "Developed backend APIs, database models, and responsive client applications, with OAuth integration for authentication and authorization flows. Worked across service contracts, persistence, and client behavior to connect the application's backend and user experience."
+      "description": "Developed backend APIs, database models, and responsive client applications. Work through ETM included UNHCR operational reporting and case workflows, with contributions to data imports, reports, activity logs, status and transfer behavior, and Laravel/Nuxt interfaces."
     },
     {
       "company": "Independent Consulting",
       "role": "Software Engineering Consultant",
       "period": "Selected engagements",
-      "description": "Engineering consulting across custom Odoo modules, Linux hardening, and application deployments. Connect business-specific software changes with the server configuration and delivery work needed to run and maintain them."
+      "description": "Engineering consultancy across student-information and academic-operations systems, document processing and management, and AI-assisted drafting. Engagements also include Hibo Megazen infrastructure, full development and infrastructure for ODA Award, custom Odoo modules, Linux hardening, and application deployments."
     }
   ],
   "faqs": [
@@ -170,6 +270,14 @@
     {
       "question": "How can we discuss a role or consulting engagement?",
       "answer": "Email fkadeal@open.et with a short overview of your product, the engineering challenge, and whether you are hiring for a team role or seeking consulting support. Include the current stack, expected scope, and timeline so we can discuss fit and the most useful next step."
+    },
+    {
+      "question": "What consultancy work have you delivered?",
+      "answer": "My consultancy work includes student-information and academic-operations systems; document processing, management, and AI-assisted drafting; infrastructure for Hibo Megazen; and full development and infrastructure for ODA Award. Company work is attributed separately, including UNHCR operational reporting and case workflows undertaken through ETM."
+    },
+    {
+      "question": "What was your role on ODA Award?",
+      "answer": "I handled full development and infrastructure as an independent consultancy engagement, covering the public voting experience, supporting content management, and deployment. The platform handled 110,000 users on voting day."
     }
   ]
 }

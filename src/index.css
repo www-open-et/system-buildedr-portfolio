@@ -778,6 +778,17 @@ main,
 .expertise-list .text-link {
   margin-top: 25px;
 }
+.related-work {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 24px;
+  gap: 14px;
+}
+.expertise-list .related-work .text-link {
+  margin-top: 0;
+  line-height: 1.6;
+}
 .process-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

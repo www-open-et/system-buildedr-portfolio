@@ -63,17 +63,20 @@ All nested fields are strings except `skills`, `approach`, `stack`, and `flow`, 
 - Use Fkadeal Matiwos / FKADL and the contact links already recorded in the profile.
 - Describe experience as roughly ten years; do not infer an exact career start or introduce education claims.
 - Preserve the supplied periods: Lawgical `Recent work`, BirrLink `2024 - present`, FARIS `2023 - present`, ETM `2021 - 2023`, and independent consulting without dates.
-- Keep end-client identities, private contact records, credentials, salaries, and personal goals out of all content.
+- Use only explicitly approved public project names and affiliations. UNHCR work is attributed through ETM; Hibo Megazen and ODA Award are consultancy engagements. Keep other end-client identities, private contact records, credentials, salaries, and personal goals out of all content.
 - Describe known project scope without inventing adoption numbers, revenue, latency improvements, or other quantitative achievements.
 - Do not present a procurement proposal, design recommendation, or planned feature as completed delivery.
-- Keep ODA details minimal. Preserve the supplied FARIS, ETM, and consulting scope; add further responsibilities or technologies only when verified and shareable.
+- ODA Award scope is owner-confirmed full development and infrastructure consultancy. The owner reports 110,000 users on voting day; preserve that daily-user wording, not concurrent users, votes, requests, or a measured uptime claim. The metric is owner-reported, not independently verified by the repository audit.
+- EduFaris API and Faris Chat / AI Services are infrastructure contributions through FARIS. Hibo Megazen is infrastructure consultancy. Keep descriptions focused on those contributions; project dependencies do not establish authorship of application features.
 - Distinguish recommended technical practices in notes from claims about a project's actual implementation. Review technical guidance before publishing revisions.
 
 ## Build and Static Paths
 
 The content-driven publishing workflow uses these JSON files as source material for the profile and detail pages. Run `npm run build` after editing content so the site's content loader and static-generation steps can incorporate the changes into the deployment output.
 
-Static paths are generated automatically as `/work/{slug}/` and `/writing/{slug}/`. A new note also appears in the writing index, RSS feed, sitemap, and AI-readable exports. Renaming a published slug requires a redirect in the hosting configuration. The homepage and project-fit finder feature selected project slugs in `src/App.tsx`; update those references if you rename or remove a featured project.
+Static paths are generated automatically as `/work/{slug}/` and `/writing/{slug}/`. A new note also appears in the writing index, RSS feed, sitemap, and AI-readable exports. Renaming a published slug requires a redirect in the hosting configuration. The homepage, project-fit finder, and `expertiseWork` mapping in `src/App.tsx` reference selected project slugs; update those references if you rename or remove a project. The Work page and recruiter brief list every project from the profile automatically. The homepage currently highlights Lawgical intake, BirrLink payments, and ODA Award.
+
+Update project facts in the JSON first, then review related homepage and About copy. The ODA voting-day figure also appears in the homepage proof points, About, and FAQ; keep the figure and its daily-user scope consistent if the owner revises it. Do not publish the private GitHub audit, repository lists, or contribution counts as part of routine profile updates.
 
 Generated HTML, bundled assets, and generated route or sitemap output are build artifacts, not the editorial source. Edit the JSON and rebuild rather than manually patching generated files. Check the configured output directory and test direct navigation to each new detail URL, not just navigation from the home page. Content changes become visible on the hosted site after the updated build is deployed.
 

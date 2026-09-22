@@ -221,6 +221,48 @@ test("metadata derives identity and location from content and escapes editorial 
   assert.ok(head.includes(escapeXml(page.description)));
 });
 
+test("project and experience updates reach the work page, recruiter brief, and about page", async () => {
+  const bodyFor = async (path) =>
+    plainText(
+      (await read(outputPath(pages.find((page) => page.path === path)))).split(
+        "<body>",
+      )[1],
+    );
+  const work = await bodyFor("/work/");
+  const resume = await bodyFor("/resume/");
+  const about = await bodyFor("/about/");
+  for (const project of profile.projects) {
+    for (const [label, body] of [
+      ["Work", work],
+      ["Resume", resume],
+    ]) {
+      assert.ok(
+        body.includes(project.title),
+        `${label}: missing project ${project.slug}`,
+      );
+      assert.ok(
+        body.includes(project.summary.replace(/\s+/g, " ")),
+        `${label}: stale summary for ${project.slug}`,
+      );
+      assert.ok(
+        body.includes(project.company),
+        `${label}: missing attribution for ${project.slug}`,
+      );
+    }
+  }
+  for (const experience of profile.experience) {
+    for (const [label, body] of [
+      ["About", about],
+      ["Resume", resume],
+    ]) {
+      assert.ok(
+        body.includes(experience.description.replace(/\s+/g, " ")),
+        `${label}: stale experience for ${experience.company}`,
+      );
+    }
+  }
+});
+
 test("every route contains rendered content, unique metadata, and linked structured data", async () => {
   const titles = new Set();
   const descriptions = new Set();

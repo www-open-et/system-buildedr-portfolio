@@ -35,6 +35,26 @@ const posts = Object.values(
   }),
 ).sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));
 const icons = [Workflow, CreditCard, Layers, Server];
+const expertiseWork: Record<string, string[]> = {
+  ai: [
+    "lawgical-intake-automation",
+    "lawgical-signals",
+    "document-processing-management-ai-drafting",
+  ],
+  payments: ["birrlink-payments"],
+  saas: [
+    "yayehut-marketplace",
+    "student-information-academic-operations",
+    "unhcr-operational-reporting-case-workflows",
+    "oda-award-voting",
+  ],
+  cloud: [
+    "edufaris-api-infrastructure",
+    "hibo-megazen-infrastructure",
+    "faris-chat-ai-infrastructure",
+    "oda-award-voting",
+  ],
+};
 const nav = [
   ["/work/", "Work"],
   ["/expertise/", "Expertise"],
@@ -67,8 +87,22 @@ const fits = [
     id: "cloud",
     label: "Make delivery reliable",
     title: "Your product needs a dependable place to run.",
-    text: "Docker, Linux, AWS, reverse proxies, and delivery pipelines. Practical infrastructure that your team can understand and operate.",
-    slug: "birrlink-payments",
+    text: "Infrastructure support for education APIs, AI services, and business applications. Experience spans FARIS projects and independent consultancy, with Docker and delivery pipelines connecting code to running services.",
+    slug: "edufaris-api-infrastructure",
+  },
+  {
+    id: "documents",
+    label: "Work with documents and AI",
+    title: "From source documents to useful workflows.",
+    text: "Document processing, management interfaces, and AI-assisted drafting. Consultancy experience spans Python processing workflows and Next.js/React interfaces for permissions, uploads, and sharing.",
+    slug: "document-processing-management-ai-drafting",
+  },
+  {
+    id: "academic",
+    label: "Build an academic system",
+    title: "Academic workflows, connected end to end.",
+    text: "Student registration, grade validation, graduation processes, and administrative exports. Consultancy across Nuxt/Vue interfaces and Laravel APIs.",
+    slug: "student-information-academic-operations",
   },
 ];
 
@@ -92,19 +126,22 @@ function ProjectCard({
     <a className="project-card" href={`/work/${project.slug}/`}>
       <div className="card-top">
         <span className="mono">
-          0{index + 1} / {project.company}
+          {String(index + 1).padStart(2, "0")} / {project.company}
         </span>
         <ArrowUpRight size={22} />
       </div>
       <div className="project-visual" aria-hidden="true">
         <span>
-          {project.category === "Payments"
-            ? "PAY"
-            : project.category === "Full-Stack SaaS"
-              ? "SYS"
-              : project.company === "ODA"
-                ? "CMS"
-                : "AI"}
+          {{
+            Payments: "PAY",
+            "Full-Stack SaaS": "SYS",
+            "Academic Systems": "EDU",
+            "Document & AI Workflows": "DOC",
+            "Operational Reporting": "OPS",
+            "Infrastructure Engineering": "INFRA",
+            "Full Development & Infrastructure": "VOTE",
+            "Web Application": "CMS",
+          }[project.category] || "AI"}
         </span>
         <div className="signal-lines">
           <i />
@@ -224,8 +261,8 @@ function Home() {
       <section className="hero">
         <div className="hero-copy">
           <p className="eyebrow">
-            <span className="status-dot" /> Addis Ababa, Ethiopia / Working
-            across boundaries
+            <span className="status-dot" /> {profile.location} / Working across
+            boundaries
           </p>
           <h1>
             Complex systems.
@@ -235,9 +272,9 @@ function Home() {
             <span>Real-world impact.</span>
           </h1>
           <p className="hero-description">
-            I'm Fkadeal Matiwos, a senior software engineer connecting{" "}
-            <strong>AI, payments, and cloud infrastructure</strong> to the
-            products people actually use.
+            I'm {profile.name}, a senior software engineer and consultant
+            connecting <strong>AI, payments, and cloud infrastructure</strong>{" "}
+            to the products people actually use.
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="/work/">
@@ -253,8 +290,8 @@ function Home() {
               <span>in the industry</span>
             </div>
             <div>
-              <strong>Full-stack perspective</strong>
-              <span>from interface to infrastructure</span>
+              <strong>110,000 users</strong>
+              <span>ODA Award · voting day</span>
             </div>
           </div>
         </div>
@@ -312,7 +349,7 @@ function Home() {
               [
                 "lawgical-intake-automation",
                 "birrlink-payments",
-                "yayehut-marketplace",
+                "oda-award-voting",
               ].includes(project.slug),
             )
             .slice(0, 3)
@@ -396,9 +433,16 @@ function About() {
             a system they can understand.
           </p>
           <p>
-            That perspective has taken me through Ethiopian payment
-            infrastructure, legal-tech automation, multi-tenant marketplaces,
-            and independent systems consulting.
+            That perspective has taken me through payments at BirrLink,
+            legal-tech automation at Lawgical, and infrastructure for EduFaris
+            API and Faris Chat / AI Services at FARIS. At ETM, I contributed to
+            UNHCR operational reporting and case workflows.
+          </p>
+          <p>
+            My independent consultancy spans student-information systems,
+            document processing and AI-assisted drafting, Hibo Megazen
+            infrastructure, and full development and infrastructure for ODA
+            Award, which handled 110,000 users on voting day.
           </p>
           <a className="button button-outline" href="/resume/">
             View recruiter brief <ArrowUpRight size={18} />
@@ -448,9 +492,9 @@ function Expertise() {
         title="Depth at the intersections."
       >
         <p>
-          Senior software engineering in Addis Ababa, Ethiopia, with a
-          full-stack perspective on AI automation, payment systems, SaaS, and
-          cloud infrastructure.
+          Senior software engineering and consultancy in {profile.location}. AI
+          automation, payments, academic and document systems, and cloud
+          infrastructure—with project evidence for each area.
         </p>
       </Heading>
       <div className="expertise-list">
@@ -466,9 +510,24 @@ function Expertise() {
                 <h2>{item.title}</h2>
                 <p>{item.description}</p>
                 <Tags items={item.skills} />
-                <a className="text-link" href={`/work/${fits[i].slug}/`}>
-                  Relevant project <ArrowUpRight size={18} />
-                </a>
+                <nav
+                  className="related-work"
+                  aria-label={`${item.title} project evidence`}
+                >
+                  {profile.projects
+                    .filter((project) =>
+                      expertiseWork[item.id]?.includes(project.slug),
+                    )
+                    .map((project) => (
+                      <a
+                        key={project.slug}
+                        className="text-link"
+                        href={`/work/${project.slug}/`}
+                      >
+                        {project.title} <ArrowUpRight size={18} />
+                      </a>
+                    ))}
+                </nav>
               </div>
             </section>
           );
@@ -516,9 +575,10 @@ function Work() {
         title="Built across boundaries."
       >
         <p>
-          AI workflows, payment infrastructure, and multi-tenant products. A
-          closer look at my engineering contributions, with company-level
-          context and no private client data.
+          {profile.projects.length} selected projects across AI automation,
+          payments, full-stack products, and infrastructure. Explore company
+          contributions and independent consultancy, with roles and technical
+          scope explained in each case study.
         </p>
       </Heading>
       <div className="project-grid work-grid">
@@ -547,6 +607,7 @@ function Project({ project }: { project: (typeof profile.projects)[number] }) {
           <p className="eyebrow">Engineering context</p>
           <strong>{project.company}</strong>
           <p>{project.category}</p>
+          <p className="eyebrow">Project technologies</p>
           <Tags items={project.stack} />
           <a className="text-link" href="/contact/">
             Discuss similar work <ArrowUpRight size={16} />
@@ -602,9 +663,9 @@ function Writing() {
         title="Notes from the system layer."
       >
         <p>
-          Practical thinking about reliable workflows, payment integrations, and
-          the boundaries that make software easier to operate. Design guidance,
-          not confidential project postmortems.
+          Practical thinking about reliable AI workflows, payment integrations,
+          tenant boundaries, and maintainable delivery. These notes complement
+          my company and consultancy work with reusable engineering guidance.
         </p>
       </Heading>
       <div className="writing-toolbar">
@@ -690,10 +751,11 @@ function Article({ post }: { post: Post }) {
             </section>
           ))}
           <div className="author-box">
-            <strong>From the engineering notebook of Fkadeal Matiwos</strong>
+            <strong>From the engineering notebook of {profile.name}</strong>
             <p>
-              Senior software engineer in Addis Ababa. AI automation, payments,
-              full-stack products, and cloud infrastructure.
+              Senior software engineer and consultant in {profile.location}. AI
+              automation, payments, business applications, and cloud
+              infrastructure.
             </p>
             <a className="text-link" href="/about/">
               More about my work <ArrowUpRight size={17} />
@@ -726,8 +788,9 @@ function Contact() {
         title="What's the challenge?"
       >
         <p>
-          Looking for a senior engineer, an integration partner, or someone who
-          can connect product and infrastructure? Tell me what you are building.
+          Looking for a senior engineer or consultancy support? Let's discuss AI
+          and document workflows, payments, academic or business systems, full
+          application development, or infrastructure delivery.
         </p>
       </Heading>
       <section className="contact-layout">
@@ -806,6 +869,10 @@ function Contact() {
                 "Payment integrations",
                 "SaaS / full-stack development",
                 "Cloud & infrastructure",
+                "Document management & AI-assisted drafting",
+                "Academic & student-information systems",
+                "Reporting & case workflows",
+                "Full development & infrastructure consultancy",
                 "A senior engineering role",
                 "Something else",
               ].map((t) => (
@@ -883,12 +950,15 @@ function Resume() {
           <p>{job.description}</p>
         </section>
       ))}
-      <h2>Selected projects</h2>
-      {profile.projects.slice(0, 4).map((p) => (
+      <h2>Selected project portfolio</h2>
+      {profile.projects.map((p) => (
         <section className="resume-job" key={p.slug}>
           <h3>
             <a href={`/work/${p.slug}/`}>{p.title}</a>
           </h3>
+          <p className="mono">
+            {p.company} / {p.category}
+          </p>
           <p>{p.summary}</p>
         </section>
       ))}
