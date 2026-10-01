@@ -309,7 +309,9 @@ test("every route contains rendered content, unique metadata, and linked structu
     }
     if (page.notFound)
       assert.match(body, /not found|doesn.t exist|couldn.t find|404/i);
-    const titleMatches = [...html.matchAll(/<title>(.*?)<\/title>/g)];
+    // SVG artwork may contain accessible titles; metadata belongs to the head.
+    const head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)?.[1] || "";
+    const titleMatches = [...head.matchAll(/<title>(.*?)<\/title>/g)];
     assert.equal(titleMatches.length, 1, `${page.path}: one title`);
     assert.equal(decode(titleMatches[0][1]), page.title);
     const descriptionsInHtml = [

@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import profile from "./content/profile.json";
 import portrait from "./assets/fkadeal-headshot.jpg";
+import BusinessCards, { YayehutConnect } from "./pages/BusinessCards";
 
 type Post = {
   slug: string;
@@ -993,6 +994,8 @@ export default function App({
     (item) => route === `/work/${item.slug}/`,
   );
   const post = posts.find((item) => route === `/writing/${item.slug}/`);
+  if (route === "/cards/") return <BusinessCards />;
+  if (route === "/yayehut/") return <YayehutConnect />;
   const page =
     route === "/" ? (
       <Home />
@@ -1095,6 +1098,7 @@ export default function App({
         <div className="footer-bottom">
           <span>{profile.name} / Built with intention.</span>
           <div>
+            <a href="/cards/">Business cards</a>
             <a href="/resume/">Recruiter brief</a>
             <a href="/llms.txt">For AI readers</a>
             <a href="/feed.xml">RSS</a>

@@ -266,6 +266,16 @@ export async function loadContent() {
       description: `${profile.name}'s printable engineering profile: experience, skills, and ${profile.projects.length} projects with company and consultancy attribution.`,
     },
     {
+      path: "/cards/",
+      label: "The FKDEAL Identity System",
+      description: "Five considered business cards for Fkadeal Matiwos. One cohesive identity for a technology builder, engineer, and founder of Yayehut.",
+    },
+    {
+      path: "/yayehut/",
+      label: "Yayehut — Explore & Connect",
+      description: "Helping 1,000 businesses grow by 2027. Explore the Yayehut marketplace and join the community on Telegram.",
+    },
+    {
       path: "/404.html",
       label: "Page Not Found",
       description: `This page could not be found. Explore ${profile.name}'s work, engineering notes, or contact page.`,
