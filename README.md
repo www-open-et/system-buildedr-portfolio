@@ -1,4 +1,4 @@
-# Fkadeal Matiwos Portfolio
+# Fkadeal Matiwos Portfolio 
 
 A content-driven React portfolio for Fkadeal Matiwos, senior software engineer in Addis Ababa, Ethiopia. Vite builds client assets; a Node script server-renders every public route into standalone HTML. The canonical domain comes from `src/content/profile.json`, currently https://fkadeal.open.et.
 
