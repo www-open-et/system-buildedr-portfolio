@@ -49,6 +49,7 @@ const expertiseWork: Record<string, string[]> = {
     "oda-award-voting",
   ],
   cloud: [
+    "birrlink-payments",
     "edufaris-api-infrastructure",
     "hibo-megazen-infrastructure",
     "faris-chat-ai-infrastructure",
@@ -71,9 +72,9 @@ const fits = [
   },
   {
     id: "payments",
-    label: "Connect payments",
-    title: "The transaction is only the beginning.",
-    text: "Payment channels, callback verification, state synchronization, and reconciliation. Connect the customer experience to the financial record.",
+    label: "Build payment integrations",
+    title: "From merchant checkout to reconciliation.",
+    text: "FinTech engineering across payment orchestration, provider callbacks, transaction-state synchronization, and cloud operations. BirrLink experience connects payment services with the infrastructure that runs them.",
     slug: "birrlink-payments",
   },
   {
@@ -133,7 +134,7 @@ function ProjectCard({
       <div className="project-visual" aria-hidden="true">
         <span>
           {{
-            Payments: "PAY",
+            "FinTech & Payments": "PAY",
             "Full-Stack SaaS": "SYS",
             "Academic Systems": "EDU",
             "Document & AI Workflows": "DOC",
@@ -433,8 +434,11 @@ function About() {
             a system they can understand.
           </p>
           <p>
-            That perspective has taken me through payments at BirrLink,
-            legal-tech automation at Lawgical, and infrastructure for EduFaris
+            At BirrLink Financial Technology S.C., I work as a Senior Payment
+            Systems Engineer, connecting payment orchestration, merchant
+            integrations, and reconciliation with cloud infrastructure and
+            service reliability. My other experience spans legal-tech
+            automation at Lawgical and infrastructure for EduFaris
             API and Faris Chat / AI Services at FARIS. At ETM, I contributed to
             UNHCR operational reporting and case workflows.
           </p>
@@ -866,7 +870,7 @@ function Contact() {
             >
               {[
                 "AI automation",
-                "Payment integrations",
+                "FinTech & payment integrations",
                 "SaaS / full-stack development",
                 "Cloud & infrastructure",
                 "Document management & AI-assisted drafting",

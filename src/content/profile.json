@@ -17,9 +17,9 @@
     },
     {
       "id": "payments",
-      "title": "Payments & Business Integrations",
-      "description": "Build the connection between a payment request and the business record that must eventually agree with it. I work across local payment channels, callback processing, and accounting integrations, with particular attention to transaction identity, failure handling, and reconciliation.",
-      "skills": ["Telebirr", "Bank integrations", "USSD payment flows", "Payment callbacks", "Odoo", "Reconciliation", "FastAPI"]
+      "title": "FinTech & Payment Systems",
+      "description": "Connect merchant checkout, payment-provider integrations, and transaction reconciliation. As Senior Payment Systems Engineer at BirrLink, I work across payment orchestration, asynchronous callbacks, transaction-status synchronization, and the cloud infrastructure supporting financial applications. My focus is the complete transaction lifecycle and its operational dependencies.",
+      "skills": ["Payment orchestration", "Merchant checkout", "Telebirr", "Bank integrations", "USSD", "Mobile money", "Transaction lifecycle", "Payment callbacks", "Reconciliation", "Odoo", "FastAPI", "Go", "RabbitMQ"]
     },
     {
       "id": "saas",
@@ -30,7 +30,7 @@
     {
       "id": "cloud",
       "title": "Cloud Delivery & Service Operations",
-      "description": "Connect application development with repeatable deployment and service operations. My infrastructure work includes EduFaris API and Faris Chat / AI Services through FARIS, Hibo Megazen consultancy, and full development and infrastructure for ODA Award. I work across cloud and Linux environments with containers, configuration management, infrastructure as code, and CI/CD.",
+      "description": "Connect application development with repeatable deployment and service operations. At BirrLink, this includes AWS infrastructure, payment-service delivery, configuration automation, and monitoring. Other work spans EduFaris API and Faris Chat / AI Services through FARIS, Hibo Megazen consultancy, and full development and infrastructure for ODA Award.",
       "skills": ["AWS", "Terraform", "Ansible", "Kubernetes", "CI/CD", "Cloudflare Workers", "Docker", "Linux VPS", "Linux hardening", "Nginx", "Envoy", "systemd"]
     }
   ],
@@ -70,20 +70,21 @@
     },
     {
       "slug": "birrlink-payments",
-      "title": "Payment Channels & Reconciliation",
+      "title": "BirrLink — Payment Systems & Cloud Infrastructure",
       "company": "BirrLink",
-      "category": "Payments",
-      "summary": "Payment integration work across Telebirr, banks, and USSD flows, with callbacks and Odoo reconciliation connecting payment activity to business records.",
-      "challenge": "Payment initiation and payment confirmation are separate events. Provider callbacks, application records, and accounting entries need a coherent integration path, while the services handling those events need a maintainable deployment environment.",
+      "category": "FinTech & Payments",
+      "summary": "As Senior Payment Systems Engineer at BirrLink, I work across merchant checkout, payment orchestration, provider integrations, and transaction reconciliation. My responsibilities connect payment services with AWS infrastructure, deployment automation, and operational reliability.",
+      "challenge": "A payment platform must coordinate customer-facing checkout with asynchronous provider confirmations and business records. Telebirr, bank, and USSD payment channels bring different integration requirements, while callbacks and background processing introduce failure and recovery scenarios. The engineering challenge extends from transaction-state consistency to the infrastructure, observability, and deployment processes supporting the services.",
       "approach": [
-        "Connect Telebirr, bank, and USSD payment flows through FastAPI-based integration services.",
-        "Handle payment callbacks as part of the transaction lifecycle rather than relying on a customer's browser returning to the application.",
-        "Integrate Odoo reconciliation into the broader payment workflow so payment information can be compared with business records.",
-        "Work with Nginx, Envoy, and systemd for request routing and service operation."
+        "Payment integrations and transaction workflows: contribute to merchant checkout, Telebirr, bank, and USSD connectivity, callback handling, payment-status synchronization, and Odoo integration and reconciliation workflows.",
+        "Webhook and messaging infrastructure: implement Go gateway changes for structured bank webhook messages, transaction identifiers, RabbitMQ publishing, request mirroring, and dead-letter routing.",
+        "Cloud and service operations: manage AWS infrastructure and work with Terraform and Ansible for repeatable provisioning and configuration, including database replication, PgBouncer, backup tooling, monitoring agents, and alerting.",
+        "Release engineering: containerize services with Docker, orchestrate workloads using Kubernetes, and automate delivery with GitHub Actions and Jenkins. Contributions include container-image publishing, deployment configuration, and application and background-worker supervision.",
+        "Cross-functional delivery: collaborate with development, security, operations, and product teams on reliability, security requirements, and the operational trade-offs involved in financial applications."
       ],
-      "outcome": "An integration path connecting Telebirr, bank, and USSD payment activity with callback processing and Odoo reconciliation, supported by FastAPI services and Linux service infrastructure.",
-      "stack": ["Telebirr", "Bank integrations", "USSD", "Odoo", "FastAPI", "Nginx", "Envoy", "systemd"],
-      "flow": ["Payment request", "Telebirr, bank, or USSD channel", "Provider callback", "Payment status processing", "Odoo reconciliation"]
+      "outcome": "Engineering contributions across the transaction lifecycle and the platform operating it: merchant payment flows, provider callbacks, asynchronous messaging, reconciliation, and cloud delivery. The role combines payment-domain implementation with the deployment and service-operation work needed to maintain financial applications.",
+      "stack": ["FastAPI", "Go", "RabbitMQ", "Telebirr", "Odoo", "AWS", "Docker", "Kubernetes", "Terraform", "Ansible", "GitHub Actions", "Jenkins", "PostgreSQL", "PgBouncer", "Redis", "Nginx", "Envoy", "systemd"],
+      "flow": ["Merchant checkout and payment initiation", "Telebirr, bank, or USSD payment channel", "Provider confirmation and webhook intake", "Asynchronous processing and transaction-status synchronization", "Business-system integration and reconciliation"]
     },
     {
       "slug": "yayehut-marketplace",
@@ -222,10 +223,10 @@
       "description": "Full-stack engineering with Next.js, NestJS, TypeScript, Supabase, and PostgreSQL across AI automation and prospecting workflows. Work includes Resend-driven intake, durable scheduled calling with ElevenLabs and Twilio, CasePeer integration, and Signals enrichment with PhantomBuster, relationship graphs, and introduction queues."
     },
     {
-      "company": "BirrLink",
-      "role": "Software Engineering - Payments & Integrations",
-      "period": "2024 - present",
-      "description": "Payment integration work involving Telebirr, banks, USSD, callbacks, and Odoo reconciliation. The scope includes FastAPI services and the Nginx, Envoy, and systemd environment supporting their operation."
+      "company": "BirrLink Financial Technology S.C.",
+      "role": "Senior Payment Systems Engineer",
+      "period": "November 2024–Present",
+      "description": "Full-time, on-site in Addis Ababa. Work across payment orchestration, merchant checkout, provider integrations, transaction callbacks, and reconciliation workflows. Responsibilities also span AWS infrastructure, containerized services, CI/CD with GitHub Actions and Jenkins, and infrastructure automation using Terraform and Ansible. Connect payment engineering with observability, recoverability, security requirements, and maintainable service delivery."
     },
     {
       "company": "FARIS",

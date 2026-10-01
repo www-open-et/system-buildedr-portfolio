@@ -221,12 +221,12 @@ export async function loadContent() {
       path: "/",
       label: "Home",
       title: `${profile.name} | ${profile.role}`,
-      description: `${profile.name}, senior software engineer and consultant in ${profile.location}. AI automation, payments, business applications, and cloud infrastructure.`,
+      description: `${profile.name}, senior software engineer in ${profile.location}. FinTech payment systems, AI automation, cloud infrastructure, and consultancy.`,
     },
     {
       path: "/about/",
       label: "About",
-      description: `About ${profile.name}: roughly ten years across company engineering and consultancy, including Lawgical, BirrLink, FARIS, ETM, and ODA Award.`,
+      description: `About ${profile.name}: Senior Payment Systems Engineer at BirrLink, with roughly ten years across software engineering, cloud infrastructure, and consultancy.`,
     },
     {
       path: "/work/",
@@ -242,7 +242,7 @@ export async function loadContent() {
     {
       path: "/expertise/",
       label: "Engineering Expertise",
-      description: `${profile.name}'s expertise: AI and document automation, payments, SaaS and academic systems, and infrastructure. Explore related project evidence in each area.`,
+      description: `${profile.name}'s expertise: FinTech, payment orchestration, merchant integrations, AI automation, full-stack systems, and cloud operations.`,
     },
     {
       path: "/writing/",

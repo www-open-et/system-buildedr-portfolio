@@ -62,7 +62,8 @@ All nested fields are strings except `skills`, `approach`, `stack`, and `flow`, 
 
 - Use Fkadeal Matiwos / FKADL and the contact links already recorded in the profile.
 - Describe experience as roughly ten years; do not infer an exact career start or introduce education claims.
-- Preserve the supplied periods: Lawgical `Recent work`, BirrLink `2024 - present`, FARIS `2023 - present`, ETM `2021 - 2023`, and independent consulting without dates.
+- Preserve the supplied periods: Lawgical `Recent work`, BirrLink `November 2024–Present`, FARIS `2023 - present`, ETM `2021 - 2023`, and independent consulting without dates. BirrLink's official title is `Senior Payment Systems Engineer` at `BirrLink Financial Technology S.C.`; full-time, on-site in Addis Ababa. Cloud infrastructure and DevOps describe the specialization, not a second job title.
+- BirrLink terminology includes payment orchestration, merchant checkout, provider integrations, transaction lifecycles, asynchronous callbacks, reconciliation, and operational reliability. Keep these connected to the described work; do not infer settlement ownership, regulatory certifications, PCI compliance, transaction volumes, or unmeasured cost/uptime improvements.
 - Use only explicitly approved public project names and affiliations. UNHCR work is attributed through ETM; Hibo Megazen and ODA Award are consultancy engagements. Keep other end-client identities, private contact records, credentials, salaries, and personal goals out of all content.
 - Describe known project scope without inventing adoption numbers, revenue, latency improvements, or other quantitative achievements.
 - Do not present a procurement proposal, design recommendation, or planned feature as completed delivery.
