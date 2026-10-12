@@ -58,6 +58,8 @@ The exact top-level fields are `name`, `shortName`, `role`, `location`, `email`,
 
 All nested fields are strings except `skills`, `approach`, `stack`, and `flow`, which are arrays of strings. Keep the four expertise IDs exactly `ai`, `payments`, `saas`, and `cloud`. Project slugs must be unique and stable. Experience periods are display strings, so entries such as `Recent work` do not need an invented calendar date. Role labels describe engineering scope and should not be read as verified contractual job titles.
 
+Projects may also include an optional `builderStory` object. When present, it requires `stage` and `origin` strings plus non-empty `lessons` and `roadmap` arrays of strings. This adds the motivation, product lessons, and a separately labeled proposed roadmap to the case study. `approach` continues to describe what was built. The public profile export calls roadmap items `plannedCapabilities`, and the full AI-readable export explicitly marks them as proposed, not delivered.
+
 ## Editorial Boundaries
 
 - Use Fkadeal Matiwos / FKADL and the contact links already recorded in the profile.
@@ -70,6 +72,8 @@ All nested fields are strings except `skills`, `approach`, `stack`, and `flow`, 
 - ODA Award scope is owner-confirmed full development and infrastructure consultancy. The owner reports 110,000 users on voting day; preserve that daily-user wording, not concurrent users, votes, requests, or a measured uptime claim. The metric is owner-reported, not independently verified by the repository audit.
 - EduFaris API and Faris Chat / AI Services are infrastructure contributions through FARIS. Hibo Megazen is infrastructure consultancy. Keep descriptions focused on those contributions; project dependencies do not establish authorship of application features.
 - Distinguish recommended technical practices in notes from claims about a project's actual implementation. Review technical guidance before publishing revisions.
+- BMail is a builder-led business email service with a deployed internal outbound release. Its team accounts, approved senders, composer, attachments, queue, submission statuses, encrypted storage, history, audit trail, and deployment are supported by the supplied session and shared conversations. Receiving, shared inboxes, multi-organization onboarding, delivery-event ingestion, and a developer API are product directions, not shipped capabilities. BirrLink remains the company attribution; BMail is the product name.
+- Tell the BMail origin story around recurring blocks, shared sending reputation, authentication/routing issues, and the need for a usable team product. Do not copy IP addresses, internal hostnames, mailbox identities, tunnel identifiers, credentials, raw logs, or shared-chat links into public content. Do not claim guaranteed inbox delivery, zero operating cost, or an independently verified throughput result. The cost benefit is avoiding an additional email-platform software subscription in the current internal setup.
 
 ## Build and Static Paths
 

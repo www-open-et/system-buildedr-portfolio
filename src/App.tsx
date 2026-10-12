@@ -44,12 +44,14 @@ const expertiseWork: Record<string, string[]> = {
   ],
   payments: ["birrlink-payments"],
   saas: [
+    "bmail-business-email-service",
     "yayehut-marketplace",
     "student-information-academic-operations",
     "unhcr-operational-reporting-case-workflows",
     "oda-award-voting",
   ],
   cloud: [
+    "bmail-business-email-service",
     "birrlink-payments",
     "edufaris-api-infrastructure",
     "hibo-megazen-infrastructure",
@@ -106,6 +108,13 @@ const fits = [
     text: "Student registration, grade validation, graduation processes, and administrative exports. Consultancy across Nuxt/Vue interfaces and Laravel APIs.",
     slug: "student-information-academic-operations",
   },
+  {
+    id: "email-service",
+    label: "Turn email operations into a service",
+    title: "A team product, built from a real operational problem.",
+    text: "BMail brings team access, approved senders, composition, queued sending, and history into one internal service. Its first release supports outgoing communication, with a broader email-service direction.",
+    slug: "bmail-business-email-service",
+  },
 ];
 
 function Tags({ items }: { items: string[] }) {
@@ -142,6 +151,7 @@ function ProjectCard({
             "Operational Reporting": "OPS",
             "Infrastructure Engineering": "INFRA",
             "Full Development & Infrastructure": "VOTE",
+            "Service & Product Development": "MAIL",
             "Web Application": "CMS",
           }[project.category] || "AI"}
         </span>
@@ -361,25 +371,29 @@ function Home() {
         </div>
       </section>
       <section className="point-of-view">
-        <p className="eyebrow">My point of view</p>
+        <p className="eyebrow">Builder's perspective / BMail</p>
         <h2>
-          The interesting work happens
-          <br />
-          where systems <em>meet.</em>
+          A recurring problem.
+          <br />A reason to <em>build.</em>
         </h2>
         <div>
           <p>
-            A payment provider and an accounting ledger. An AI call and a
-            case-management system. A new product and the infrastructure that
-            keeps it running.
+            Repeated email blocks were getting in the way of the team's work. I
+            built BMail to turn that operational problem into a usable
+            service: team access, approved senders, a composer, queued sending,
+            and message history.
           </p>
           <p>
-            That's where I work best: taking ownership of the connections, the
-            failure modes, and the details that turn a promising idea into
-            useful software.
+            The first release handles outgoing communication. The product
+            direction is broader: bring domain onboarding, delivery feedback,
+            application integrations, and eventually receiving workflows into a
+            more complete business email service.
           </p>
-          <a className="text-link" href="/about/">
-            Meet the engineer <ArrowUpRight size={18} />
+          <a
+            className="text-link"
+            href="/work/bmail-business-email-service/"
+          >
+            Read the builder story <ArrowUpRight size={18} />
           </a>
         </div>
       </section>
@@ -438,10 +452,16 @@ function About() {
             At BirrLink Financial Technology S.C., I work as a Senior Payment
             Systems Engineer, connecting payment orchestration, merchant
             integrations, and reconciliation with cloud infrastructure and
-            service reliability. My other experience spans legal-tech
-            automation at Lawgical and infrastructure for EduFaris
-            API and Faris Chat / AI Services at FARIS. At ETM, I contributed to
-            UNHCR operational reporting and case workflows.
+            service reliability. My other experience spans legal-tech automation
+            at Lawgical and infrastructure for EduFaris API and Faris Chat / AI
+            Services at FARIS. At ETM, I contributed to UNHCR operational
+            reporting and case workflows.
+          </p>
+          <p>
+            I also look for opportunities to turn recurring operational issues
+            into products. BMail began with blocked outgoing messages
+            and grew into an internal email service with team access, sender
+            controls, composition, and traceable submission history.
           </p>
           <p>
             My independent consultancy spans student-information systems,
@@ -596,6 +616,7 @@ function Work() {
   );
 }
 function Project({ project }: { project: (typeof profile.projects)[number] }) {
+  const story = "builderStory" in project ? project.builderStory : undefined;
   return (
     <>
       <a className="back-link" href="/work/">
@@ -612,6 +633,7 @@ function Project({ project }: { project: (typeof profile.projects)[number] }) {
           <p className="eyebrow">Engineering context</p>
           <strong>{project.company}</strong>
           <p>{project.category}</p>
+          {story && <p className="editorial-note">{story.stage}</p>}
           <p className="eyebrow">Project technologies</p>
           <Tags items={project.stack} />
           <a className="text-link" href="/contact/">
@@ -619,9 +641,19 @@ function Project({ project }: { project: (typeof profile.projects)[number] }) {
           </a>
         </aside>
         <article className="prose">
+          {story && (
+            <>
+              <h2>Why I started building</h2>
+              <p>{story.origin}</p>
+            </>
+          )}
           <h2>The challenge</h2>
           <p>{project.challenge}</p>
-          <h2>The engineering approach</h2>
+          <h2>
+            {story
+              ? "What I built in the first release"
+              : "The engineering approach"}
+          </h2>
           <ul>
             {project.approach.map((step) => (
               <li key={step}>{step}</li>
@@ -638,6 +670,25 @@ function Project({ project }: { project: (typeof profile.projects)[number] }) {
           </ol>
           <h2>What this work connects</h2>
           <p>{project.outcome}</p>
+          {story && (
+            <>
+              <h2>What shaped the product</h2>
+              {story.lessons.map((lesson) => (
+                <p key={lesson}>{lesson}</p>
+              ))}
+              <h2>The full-service direction</h2>
+              <p className="editorial-note">
+                Proposed next phases. The current release handles outgoing
+                communication; receiving and the capabilities below are product
+                directions, not features already delivered.
+              </p>
+              <ul>
+                {story.roadmap.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ul>
+            </>
+          )}
           <p className="editorial-note">
             Selected contributions, not a claim of sole authorship.
             Client-specific configurations and operational data are
@@ -878,6 +929,7 @@ function Contact() {
                 "Academic & student-information systems",
                 "Reporting & case workflows",
                 "Full development & infrastructure consultancy",
+                "Business email & communication services",
                 "A senior engineering role",
                 "Something else",
               ].map((t) => (

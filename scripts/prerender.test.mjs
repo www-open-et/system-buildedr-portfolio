@@ -107,6 +107,28 @@ test("content schema rejects invalid edits with actionable field paths", () => {
     ],
     [
       ({ profile: p }) => {
+        p.projects[0].builderStory = {
+          stage: "Current release",
+          origin: "A real operational problem",
+          lessons: ["A lesson"],
+          roadmap: "Not an array",
+        };
+      },
+      /projects\[0\]\.builderStory\.roadmap: expected an array/,
+    ],
+    [
+      ({ profile: p }) => {
+        p.projects[0].builderStory = {
+          stage: "",
+          origin: "A real operational problem",
+          lessons: ["A lesson"],
+          roadmap: ["Planned capability"],
+        };
+      },
+      /projects\[0\]\.builderStory\.stage: expected a non-empty string/,
+    ],
+    [
+      ({ profile: p }) => {
         p.projects[0].slug = "../unsafe";
       },
       /projects\[0\]\.slug/,
@@ -544,6 +566,61 @@ test("public exports are factual, readable, and explicitly allowlisted", async (
     assert.ok(
       full.includes(project.challenge) && full.includes(project.outcome),
     );
+});
+
+test("builder stories preserve current-release and planned-feature distinctions in public output", async () => {
+  const exported = JSON.parse(await read("profile.json"));
+  const full = await read("llms-full.txt");
+  const stories = profile.projects.filter((project) => project.builderStory);
+  assert.ok(stories.length > 0);
+  for (const project of stories) {
+    const body = plainText(await read(`work/${project.slug}/index.html`));
+    const story = project.builderStory;
+    for (const text of [
+      story.stage,
+      story.origin,
+      ...story.lessons,
+      ...story.roadmap,
+    ]) {
+      assert.ok(
+        body.includes(text.replace(/\s+/g, " ")),
+        `Missing builder context in ${project.slug}`,
+      );
+      assert.ok(
+        full.includes(text),
+        `Missing AI-readable builder context in ${project.slug}`,
+      );
+    }
+    assert.ok(body.includes("Proposed next phases"));
+    assert.ok(
+      full.includes("Full-service direction — proposed, not delivered"),
+    );
+    const publicStory = exported.projects.find((item) =>
+      item.url.endsWith(`/work/${project.slug}/`),
+    ).builderStory;
+    assert.deepEqual(publicStory, {
+      stage: story.stage,
+      origin: story.origin,
+      lessons: story.lessons,
+      plannedCapabilities: story.roadmap,
+    });
+  }
+  const published = [
+    JSON.stringify(exported),
+    full,
+    await read("llms.txt"),
+    ...(await Promise.all(pages.map((page) => read(outputPath(page))))),
+  ].join("\n");
+  assert.doesNotMatch(
+    published,
+    /\b(?:\d{1,3}\.){3}\d{1,3}\b/,
+    "Public copy must omit IP addresses",
+  );
+  assert.doesNotMatch(
+    published,
+    /(?:smtp|mailapp)\.birrlink\.et|blinkvm\d|farisvm\d|cfargotunnel\.com|ses_ed031578/i,
+    "Public copy must omit operational hosts and source-session identifiers",
+  );
 });
 
 test("published text has no template copy, obvious secrets, or sensitive field names", async () => {

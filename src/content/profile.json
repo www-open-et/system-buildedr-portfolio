@@ -24,13 +24,13 @@
     {
       "id": "saas",
       "title": "Full-Stack SaaS & Marketplaces",
-      "description": "Carry product behavior across the interface, API, and data model. Work includes Yayehut's marketplace, student-information and academic-operations consultancy, ODA Award development, and UNHCR reporting and case workflows through ETM. I connect usable interfaces with the validation, authorization, and data workflows behind them.",
+      "description": "Carry product behavior across the interface, API, and data model. Work includes Yayehut's marketplace, BMail's internal team service, academic-operations consultancy, ODA Award development, and UNHCR reporting through ETM. I turn operational problems into usable products, connecting interfaces with authorization, workflow state, and maintainable delivery.",
       "skills": ["Next.js", "React", "Nuxt", "Vue", "PHP", "Laravel", "NestJS", "Node.js", "TypeScript", "Hono", "Supabase", "PostgreSQL", "Multi-tenant architecture", "API design", "Academic workflows", "Operational reporting", "Content management"]
     },
     {
       "id": "cloud",
       "title": "Cloud Delivery & Service Operations",
-      "description": "Connect application development with repeatable deployment and service operations. At BirrLink, this includes AWS infrastructure, payment-service delivery, configuration automation, and monitoring. Other work spans EduFaris API and Faris Chat / AI Services through FARIS, Hibo Megazen consultancy, and full development and infrastructure for ODA Award.",
+      "description": "Connect application development with repeatable deployment and service operations. At BirrLink, this includes AWS infrastructure, payment-service delivery, configuration automation, monitoring, and the email-service foundation behind BMail. Other work spans EduFaris API and Faris Chat / AI Services through FARIS, Hibo Megazen consultancy, and ODA Award.",
       "skills": ["AWS", "Terraform", "Ansible", "Kubernetes", "CI/CD", "Cloudflare Workers", "Docker", "Linux VPS", "Linux hardening", "Nginx", "Envoy", "systemd"]
     }
   ],
@@ -85,6 +85,40 @@
       "outcome": "Engineering contributions across the transaction lifecycle and the platform operating it: merchant payment flows, provider callbacks, asynchronous messaging, reconciliation, and cloud delivery. The role combines payment-domain implementation with the deployment and service-operation work needed to maintain financial applications.",
       "stack": ["FastAPI", "Go", "RabbitMQ", "Telebirr", "Odoo", "AWS", "Docker", "Kubernetes", "Terraform", "Ansible", "GitHub Actions", "Jenkins", "PostgreSQL", "PgBouncer", "Redis", "Nginx", "Envoy", "systemd"],
       "flow": ["Merchant checkout and payment initiation", "Telebirr, bank, or USSD payment channel", "Provider confirmation and webhook intake", "Asynchronous processing and transaction-status synchronization", "Business-system integration and reconciliation"]
+    },
+    {
+      "slug": "bmail-business-email-service",
+      "title": "BMail — Business Email Service",
+      "company": "BirrLink",
+      "category": "Service & Product Development",
+      "summary": "I built BMail after recurring email blocks exposed a need for better control over business communication. The internal release combines team access, approved sender identities, attachments, queued sending, and audit history—a working foundation for a broader business email service, starting with outbound communication.",
+      "challenge": "Email reliability was an operational problem with a product gap behind it. Shared sending reputation, domain-authentication configuration, mailbox routing, and sender verification could each affect a message's journey. The team needed a clear way to compose and submit messages, use approved identities, and understand what had happened without managing SMTP credentials or interpreting server logs.",
+      "approach": [
+        "Build the team experience: individual logins, administrator-managed access, approved sender identities, a composer with To/CC/BCC, attachments, and editable starter templates. Enforce a sender copy in CC on the backend so correspondence also reaches the user's existing mailbox.",
+        "Design the application around explicit workflow state: a persistent sending queue, duplicate-submit protection, personal history, and an audit trail. Distinguish relay acceptance, partial rejection, failure, and uncertain completion so a connection interruption does not trigger an unsafe automatic resend.",
+        "Keep the initial service lightweight: use Flask and server-rendered templates with one background worker, SQLCipher-encrypted SQLite storage, and server-side SMTP credentials. Add sender authorization, CSRF protection, password hashing, and sending limits around the workflow.",
+        "Connect product and mail operations: integrate authenticated SMTP over verified STARTTLS, work through SPF/DKIM/DMARC alignment and same-domain routing issues, and preserve existing mailboxes for incoming messages and replies.",
+        "Deliver the application as a Docker deployment with persistent data and HTTPS access through Cloudflare Tunnel. Migrate existing accounts and message history, then verify the browser experience and SMTP connectivity."
+      ],
+      "outcome": "A deployed internal service that gives the team an application for controlled business-email sending, rather than requiring direct access to mail-server configuration. The current setup uses infrastructure under the team's control and avoids an additional email-platform software subscription, while hosting and operations remain part of running the service.",
+      "stack": ["Python", "Flask", "Jinja", "Waitress", "SQLCipher", "SQLite", "Postfix", "OpenDKIM", "SMTP / STARTTLS", "SPF / DKIM / DMARC", "Docker", "Cloudflare Tunnel", "Linux"],
+      "flow": ["Team login and approved sender selection", "Compose message and attachments", "Authorization and persistent queue", "Authenticated SMTP submission", "Submission status, history, and audit trail"],
+      "builderStory": {
+        "stage": "Deployed internal release · outbound communication",
+        "origin": "I started building BMail because recurring outgoing-email blocks were interrupting the team's communication. Fixing the transport was only the first step: people still needed a simple interface, clear permissions, and useful feedback. I turned that operational problem into a lightweight product that the team could use, with a foundation for a more complete business email service.",
+        "lessons": [
+          "Infrastructure becomes a service when people can use it without understanding the servers underneath. Account management, sender permissions, composition, and history were product requirements, not finishing touches.",
+          "A successful SMTP submission is not the same as arrival in a recipient's inbox. Authentication, routing, sender verification, and later bounces are distinct concerns, so the interface must describe the status it actually knows.",
+          "The smallest useful release made the product practical to operate. A lightweight application and encrypted local storage supported the internal workflow without introducing a separate frontend build, external database, or queue service."
+        ],
+        "roadmap": [
+          "Receiving and conversation workflows: explore inbound processing, reply threading, and shared-inbox capabilities to bring sending and receiving into one team workspace.",
+          "Domain and team onboarding: develop guided domain verification, sender provisioning, and organization-level access boundaries for a reusable service beyond the initial team.",
+          "Delivery feedback: integrate bounce and delivery-event processing, actionable diagnostics, and administrative reporting beyond the current submission-status view.",
+          "Application integrations: add a developer-facing API, reusable templates, and event-driven transactional messaging for business applications.",
+          "Service operations: extend retention controls, tested backup and recovery procedures, observability, and capacity planning as usage grows."
+        ]
+      }
     },
     {
       "slug": "yayehut-marketplace",
@@ -226,7 +260,7 @@
       "company": "BirrLink Financial Technology S.C.",
       "role": "Senior Payment Systems Engineer",
       "period": "November 2024–Present",
-      "description": "Full-time, on-site in Addis Ababa. Work across payment orchestration, merchant checkout, provider integrations, transaction callbacks, and reconciliation workflows. Responsibilities also span AWS infrastructure, containerized services, CI/CD with GitHub Actions and Jenkins, and infrastructure automation using Terraform and Ansible. Connect payment engineering with observability, recoverability, security requirements, and maintainable service delivery."
+      "description": "Full-time, on-site in Addis Ababa. Work across payment orchestration, merchant checkout, provider integrations, transaction callbacks, and reconciliation workflows. Responsibilities also span AWS infrastructure, containerized services, CI/CD, and Terraform/Ansible automation. Built BMail from a recurring communication problem into an internal team email service, connecting application development, access controls, mail operations, and deployment."
     },
     {
       "company": "FARIS",

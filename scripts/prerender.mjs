@@ -99,12 +99,24 @@ const publicProfile = {
     description,
     skills,
   })),
-  projects: profile.projects.map(({ title, summary, slug, stack }) => ({
-    title,
-    summary,
-    stack,
-    url: `${origin}/work/${slug}/`,
-  })),
+  projects: profile.projects.map(
+    ({ title, summary, slug, stack, builderStory }) => ({
+      title,
+      summary,
+      stack,
+      url: `${origin}/work/${slug}/`,
+      ...(builderStory
+        ? {
+            builderStory: {
+              stage: builderStory.stage,
+              origin: builderStory.origin,
+              lessons: builderStory.lessons,
+              plannedCapabilities: builderStory.roadmap,
+            },
+          }
+        : {}),
+    }),
+  ),
   writing: posts.map(({ title, description, date, slug }) => ({
     title,
     description,
@@ -130,7 +142,7 @@ const fullText = [
   "## Selected Work",
   ...profile.projects.map(
     (item) =>
-      `### ${item.title}\n\n${origin}/work/${item.slug}/\n\n${item.summary}\n\n${item.challenge}\n\n${item.approach.map((step) => `- ${step}`).join("\n")}\n\n${item.outcome}\n\nStack: ${item.stack.join(", ")}\n\nFlow: ${item.flow.join(" -> ")}`,
+      `### ${item.title}\n\n${origin}/work/${item.slug}/\n\n${item.summary}\n\n${item.challenge}\n\n${item.approach.map((step) => `- ${step}`).join("\n")}\n\n${item.outcome}\n\nStack: ${item.stack.join(", ")}\n\nFlow: ${item.flow.join(" -> ")}${item.builderStory ? `\n\n#### Current release\n\n${item.builderStory.stage}\n\n#### Why I started building\n\n${item.builderStory.origin}\n\n#### Product lessons\n\n${item.builderStory.lessons.join("\n\n")}\n\n#### Full-service direction — proposed, not delivered\n\n${item.builderStory.roadmap.map((step) => `- ${step}`).join("\n")}` : ""}`,
   ),
   "## Selected Experience",
   ...profile.experience.map(

@@ -46,6 +46,12 @@ export function validateContent(profile, posts) {
         outcome: "string",
         stack: ["string"],
         flow: ["string"],
+        "builderStory?": {
+          stage: "string",
+          origin: "string",
+          lessons: ["string"],
+          roadmap: ["string"],
+        },
       },
     ],
     experience: [

@@ -21,6 +21,7 @@ GitHub Actions runs type checks, lint, a fresh build, and generated-output tests
 ## Content
 
 - `src/content/profile.json`: public identity, expertise, selected work, experience, and FAQs.
+- Optional project `builderStory` content captures motivation, current release, lessons, and proposed service capabilities. The case study and machine-readable exports keep the roadmap separate from delivered work.
 - `src/content/posts/*.json`: engineering notes, discovered automatically at build time.
 - `CONTENT_GUIDE.md`: step-by-step publishing instructions, JSON schema, and editorial boundaries.
 
