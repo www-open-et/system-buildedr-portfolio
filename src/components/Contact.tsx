@@ -17,14 +17,14 @@ export function Contact() {
 
           <div className="space-y-4">
             <a
-              href="mailto:fkadeal@open.et"
+              href="mailto:infkadeal@gmail.com"
               className="flex items-center justify-between p-5 rounded-xl border border-border bg-card/30 hover:bg-card/60 transition-colors group"
             >
               <div className="flex items-center gap-4">
                 <Mail className="w-5 h-5 text-accent-emerald" />
                 <div>
                   <div className="text-sm text-muted-foreground">Email</div>
-                  <div className="text-foreground font-medium">fkadeal@open.et</div>
+                  <div className="text-foreground font-medium">infkadeal@gmail.com</div>
                 </div>
               </div>
               <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
