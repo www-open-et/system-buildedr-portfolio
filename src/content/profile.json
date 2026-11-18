@@ -1,11 +1,49 @@
 {
   "name": "Fkadeal Matiwos",
   "shortName": "FKADL",
-  "role": "Senior Software Engineer | AI Automation, Payments, Cloud & Full Stack",
+  "role": "Technology & Engineering Leader | Technology Strategy, Architecture, FinTech, AI & Cloud",
   "location": "Addis Ababa, Ethiopia",
   "email": "infkadeal@gmail.com",
   "url": "https://fkadeal.open.et",
-  "summary": "Senior software engineer and consultant based in Addis Ababa, Ethiopia, with roughly ten years of industry experience. I build and operate software across AI automation, payment systems, academic operations, document workflows, and cloud infrastructure. My work spans company engineering roles and independent consultancy, from integrating business services to delivering full applications and the infrastructure that supports them. I focus on reliable integrations, recoverable workflows, and maintainable delivery.",
+  "summary": "Technology and engineering leader based in Addis Ababa, Ethiopia, with roughly ten years of industry experience. I connect business objectives with engineering execution across payment infrastructure, cloud platforms, AI automation, and SaaS products. My hands-on responsibilities span architecture, application development, infrastructure, and production delivery, including building BMail and delivering ODA Award's application and infrastructure. I am developing toward broader organization-wide technology strategy and engineering-team leadership, building on project ownership and cross-functional collaboration.",
+  "leadership": [
+    {
+      "title": "System architecture & technical direction",
+      "experience": "Designed BMail around explicit workflow state, a persistent sending queue, sender authorization, and traceable submission history.",
+      "developing": "Organization-wide architecture governance and long-term technology roadmaps.",
+      "slug": "bmail-business-email-service"
+    },
+    {
+      "title": "Cloud infrastructure & platform engineering",
+      "experience": "Manage AWS infrastructure at BirrLink and work with Terraform, Ansible, containerized services, and deployment automation.",
+      "developing": "Shared platform strategy and infrastructure planning across multiple teams.",
+      "slug": "birrlink-payments"
+    },
+    {
+      "title": "Engineering standards & delivery processes",
+      "experience": "Contribute CI/CD pipelines, repeatable configuration, container-image publishing, and application and worker supervision at BirrLink.",
+      "developing": "Organization-wide engineering standards and delivery-process leadership.",
+      "slug": "birrlink-payments"
+    },
+    {
+      "title": "Technical product development",
+      "experience": "Built BMail from a recurring communication problem into a deployed internal service, connecting team workflows, access controls, mail operations, and delivery.",
+      "developing": "Broader product-portfolio prioritization and technology investment decisions.",
+      "slug": "bmail-business-email-service"
+    },
+    {
+      "title": "Security, scalability & reliability",
+      "experience": "Delivered ODA Award's full application and infrastructure for 110,000 voting-day users. BirrLink work includes monitoring, backups, and service reliability.",
+      "developing": "Organization-wide security governance, reliability targets, and capacity planning.",
+      "slug": "oda-award-voting"
+    },
+    {
+      "title": "Cross-functional technical leadership",
+      "experience": "Collaborate with development, security, operations, and product teams at BirrLink on financial-system requirements and operational trade-offs.",
+      "developing": "Formal engineering-team management and broader cross-functional technology leadership.",
+      "slug": "birrlink-payments"
+    }
+  ],
   "github": "https://github.com/fkadeal",
   "linkedin": "https://linkedin.com/in/fkadeal",
   "expertise": [

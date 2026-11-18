@@ -61,7 +61,7 @@ const expertiseWork: Record<string, string[]> = {
 };
 const nav = [
   ["/work/", "Work"],
-  ["/expertise/", "Expertise"],
+  ["/expertise/", "Capabilities"],
   ["/about/", "About"],
   ["/writing/", "Writing"],
 ];
@@ -267,6 +267,33 @@ function FitFinder() {
     </section>
   );
 }
+function TechnologyLeadership() {
+  return (
+    <section className="section" aria-labelledby="leadership-heading">
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">Business objectives → engineering execution</p>
+          <h2 id="leadership-heading">Technology Leadership</h2>
+          <p>Project ownership and hands-on contributions, with a clear view of the responsibilities I am developing toward.</p>
+        </div>
+      </div>
+      <div className="process-grid">
+        {profile.leadership.map((area) => (
+          <article key={area.title}>
+            <h3>{area.title}</h3>
+            <p className="eyebrow">Demonstrated experience</p>
+            <p>{area.experience}</p>
+            <a className="text-link" href={`/work/${area.slug}/`}>
+              See project scope <ArrowUpRight size={17} />
+            </a>
+            <p className="eyebrow">Developing toward</p>
+            <p>{area.developing}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
 function Home() {
   return (
     <>
@@ -277,16 +304,17 @@ function Home() {
             boundaries
           </p>
           <h1>
-            Complex systems.
+            Technology &
             <br />
-            Clear thinking.
-            <br />
-            <span>Real-world impact.</span>
+            <span>Engineering Leader</span>
           </h1>
           <p className="hero-description">
-            I'm {profile.name}, a senior software engineer and consultant
-            connecting <strong>AI, payments, and cloud infrastructure</strong>{" "}
-            to the products people actually use.
+            <strong>I architect, build, and scale complex digital systems.</strong>
+          </p>
+          <p className="hero-description">
+            From payment infrastructure and cloud platforms to AI-powered
+            automation and SaaS products, I connect business objectives with
+            engineering execution.
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="/work/">
@@ -311,7 +339,7 @@ function Home() {
           <div className="portrait-wrap">
             <img
               src={portrait}
-              alt="Fkadeal Matiwos, senior software engineer based in Addis Ababa"
+              alt="Fkadeal Matiwos, technology and engineering leader based in Addis Ababa"
               width="640"
               height="640"
               {...{ fetchpriority: "high" }}
@@ -334,17 +362,19 @@ function Home() {
         </div>
       </section>
       <div className="discipline-strip">
-        <span>AI AUTOMATION</span>
-        <i /> <span>PAYMENT SYSTEMS</span>
-        <i />
-        <span>FULL-STACK PRODUCTS</span>
+        <span>SOFTWARE ARCHITECTURE</span>
+        <i /> <span>BACKEND ENGINEERING</span>
         <i />
         <span>CLOUD & DEVOPS</span>
+        <i />
+        <span>FINTECH</span>
+        <i /> <span>AI AUTOMATION</span>
       </div>
+      <TechnologyLeadership />
       <section className="section">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Selected engineering</p>
+            <p className="eyebrow">Selected Technology & Product Leadership</p>
             <h2>
               Not just screens.
               <br />
@@ -423,7 +453,7 @@ function About() {
     <>
       <Heading
         label="The person behind the systems"
-        title="An engineer, not a single-stack label."
+        title="Connecting business direction with engineering execution."
       >
         <p>{profile.summary}</p>
       </Heading>
@@ -514,12 +544,12 @@ function Expertise() {
     <>
       <Heading
         label="Capabilities / From application to operation"
-        title="Depth at the intersections."
+        title="Technology & Engineering Capabilities"
       >
         <p>
-          Senior software engineering and consultancy in {profile.location}. AI
-          automation, payments, academic and document systems, and cloud
-          infrastructure—with project evidence for each area.
+          Technology strategy grounded in hands-on delivery: architecture,
+          FinTech, AI, and cloud. Based in {profile.location}, with project
+          evidence and defined responsibilities for each area.
         </p>
       </Heading>
       <div className="expertise-list">
@@ -596,7 +626,7 @@ function Work() {
   return (
     <>
       <Heading
-        label="Selected work / Real integration problems"
+        label="Selected Technology & Product Leadership"
         title="Built across boundaries."
       >
         <p>
@@ -809,9 +839,8 @@ function Article({ post }: { post: Post }) {
           <div className="author-box">
             <strong>From the engineering notebook of {profile.name}</strong>
             <p>
-              Senior software engineer and consultant in {profile.location}. AI
-              automation, payments, business applications, and cloud
-              infrastructure.
+              Technology and engineering leader in {profile.location}.
+              Architecture, FinTech, AI automation, and cloud infrastructure.
             </p>
             <a className="text-link" href="/about/">
               More about my work <ArrowUpRight size={17} />
@@ -844,7 +873,7 @@ function Contact() {
         title="What's the challenge?"
       >
         <p>
-          Looking for a senior engineer or consultancy support? Let's discuss AI
+          Looking for technology leadership or consultancy support? Let's discuss AI
           and document workflows, payments, academic or business systems, full
           application development, or infrastructure delivery.
         </p>
@@ -930,7 +959,8 @@ function Contact() {
                 "Reporting & case workflows",
                 "Full development & infrastructure consultancy",
                 "Business email & communication services",
-                "A senior engineering role",
+                "Technology strategy & architecture",
+                "A technology & engineering leadership role",
                 "Something else",
               ].map((t) => (
                 <option key={t}>{t}</option>
@@ -1078,7 +1108,7 @@ export default function App({
       <header className="site-header">
         <a href="/" className="brand" aria-label="Fkadeal Matiwos home">
           fkadl<span className="brand-dot">.</span>
-          <span className="brand-caption">SOFTWARE ENGINEER</span>
+          <span className="brand-caption">TECHNOLOGY & ENGINEERING</span>
         </a>
         <button
           className="menu-button"

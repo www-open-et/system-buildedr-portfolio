@@ -26,6 +26,14 @@ export function validateContent(profile, posts) {
     summary: "string",
     github: "string",
     linkedin: "string",
+    leadership: [
+      {
+        title: "string",
+        experience: "string",
+        developing: "string",
+        slug: "string",
+      },
+    ],
     expertise: [
       {
         id: "string",
@@ -227,7 +235,7 @@ export async function loadContent() {
       path: "/",
       label: "Home",
       title: `${profile.name} | ${profile.role}`,
-      description: `${profile.name}, senior software engineer in ${profile.location}. FinTech payment systems, AI automation, cloud infrastructure, and consultancy.`,
+      description: `${profile.name}, Technology & Engineering Leader in ${profile.location}. Connecting business objectives with architecture, FinTech, AI, and cloud delivery.`,
     },
     {
       path: "/about/",
@@ -236,7 +244,7 @@ export async function loadContent() {
     },
     {
       path: "/work/",
-      label: "Selected Work",
+      label: "Selected Technology & Product Leadership",
       description: `${profile.projects.length} selected projects by ${profile.name}: AI, payments, academic and document systems, UNHCR workflows through ETM, ODA Award, and infrastructure.`,
     },
     ...profile.projects.map((project) => ({
@@ -247,8 +255,8 @@ export async function loadContent() {
     })),
     {
       path: "/expertise/",
-      label: "Engineering Expertise",
-      description: `${profile.name}'s expertise: FinTech, payment orchestration, merchant integrations, AI automation, full-stack systems, and cloud operations.`,
+      label: "Technology & Engineering Capabilities",
+      description: `${profile.name}'s capabilities: technology strategy, architecture, FinTech, AI, and cloud, grounded in hands-on delivery and project evidence.`,
     },
     {
       path: "/writing/",
@@ -264,7 +272,7 @@ export async function loadContent() {
     {
       path: "/contact/",
       label: "Contact",
-      description: `Contact ${profile.name} in ${profile.location} for senior engineering or consultancy in AI, documents, payments, academic systems, and infrastructure.`,
+      description: `Contact ${profile.name} in ${profile.location} for technology leadership, architecture, or consultancy in AI, FinTech, products, and cloud infrastructure.`,
     },
     {
       path: "/resume/",
@@ -385,7 +393,7 @@ export function pageHead(page, { profile, origin }) {
       site_name: profile.name,
       locale: "en_US",
       image: `${origin}/social-card.png`,
-      "image:alt": `${profile.name} - Senior Software Engineer`,
+      "image:alt": `${profile.name} - Technology & Engineering Leader`,
       "image:width": "1200",
       "image:height": "630",
       "image:type": "image/png",
@@ -395,7 +403,7 @@ export function pageHead(page, { profile, origin }) {
       title: page.title,
       description: page.description,
       image: `${origin}/social-card.png`,
-      "image:alt": `${profile.name} - Senior Software Engineer`,
+      "image:alt": `${profile.name} - Technology & Engineering Leader`,
     }).map(([key, value]) => meta(`twitter:${key}`, value)),
     ...(page.post
       ? [
